@@ -1,3 +1,4 @@
+using System;
 using Classroom.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -94,6 +95,7 @@ namespace Classroom
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = new TimeSpan(0, 0, 80);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
