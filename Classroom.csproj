@@ -25,15 +25,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\app.routing.ts" />
+    <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\_guards\auth.guard.ts" />
     <None Remove="ClientApp\src\app\_helpers\error.interceptor.ts" />
+    <None Remove="ClientApp\src\app\_helpers\jwt.interceptor.ts" />
     <None Remove="ClientApp\src\app\_models\user.ts" />
     <None Remove="ClientApp\src\app\_services\authentication.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_guards\auth.guard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_helpers\error.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_helpers\jwt.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_models\user.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_services\authentication.service.ts" />
   </ItemGroup>
