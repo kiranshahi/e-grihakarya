@@ -3,7 +3,7 @@
   <strong>Administrator</strong> - U: admin P: admin
 </div>
 <h2>Login</h2>
-<form [fromGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
