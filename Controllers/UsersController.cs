@@ -2,16 +2,11 @@
 using Classroom.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Classroom.Controllers
 {
-    [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class UsersController: ControllerBase
     {
         private IUserService _userService;
