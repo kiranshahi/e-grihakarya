@@ -11,7 +11,7 @@ namespace Classroom.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class UsersController: ControllerBase
     {
         private IUserService _userService;
