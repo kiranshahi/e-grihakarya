@@ -28,6 +28,7 @@ namespace Classroom
         {
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddDbContext<ClassroomDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevCon")));
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -55,24 +56,27 @@ namespace Classroom
 
             // Configure DI for application services
             services.AddScoped<IUserService, UserService>();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseMvc();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
                 spa.UseAngularCliServer(npmScript: "start");
             });
-
-            // Global cors policy
-            app.UseCors(x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
-            app.UseAuthentication();
-            app.UseMvc();
         }
     }
 }
