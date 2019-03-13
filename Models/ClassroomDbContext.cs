@@ -12,6 +12,6 @@ namespace Classroom.Models
         {
 
         }
-        public DbSet<ClassDetail> ClassDetails { get; set; }
+        public DbSet<Class> ClassDetails { get; set; }
     }
 }
