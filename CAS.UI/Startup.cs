@@ -68,7 +68,12 @@ namespace Classroom
             app.UseSpaStaticFiles();
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
