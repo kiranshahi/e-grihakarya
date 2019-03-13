@@ -18,16 +18,16 @@ namespace Classroom.Controllers
             _context = context;
         }
 
-        // GET: api/ClassDetails
+        // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClassDetail>>> GetClassDetails()
+        public async Task<ActionResult<IEnumerable<Class>>> GetClassDetails()
         {
             return await _context.ClassDetails.ToListAsync();
         }
 
-        // GET: api/ClassDetails/5
+        // GET: api/Class/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ClassDetail>> GetClassDetail(int id)
+        public async Task<ActionResult<Class>> GetClassDetail(int id)
         {
             var classDetail = await _context.ClassDetails.FindAsync(id);
 
@@ -39,9 +39,9 @@ namespace Classroom.Controllers
             return classDetail;
         }
 
-        // PUT: api/ClassDetails/5
+        // PUT: api/Class/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClassDetail(int id, ClassDetail classDetail)
+        public async Task<IActionResult> PutClassDetail(int id, Class classDetail)
         {
             if (id != classDetail.Id)
             {
@@ -69,9 +69,9 @@ namespace Classroom.Controllers
             return NoContent();
         }
 
-        // POST: api/ClassDetails
+        // POST: api/Class
         [HttpPost]
-        public async Task<ActionResult<ClassDetail>> PostClassDetail(ClassDetail classDetail)
+        public async Task<ActionResult<Class>> PostClassDetail(Class classDetail)
         {
             _context.ClassDetails.Add(classDetail);
             await _context.SaveChangesAsync();
@@ -79,9 +79,9 @@ namespace Classroom.Controllers
             return CreatedAtAction("GetClassDetail", new { id = classDetail.Id }, classDetail);
         }
 
-        // DELETE: api/ClassDetails/5
+        // DELETE: api/Class/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ClassDetail>> DeleteClassDetail(int id)
+        public async Task<ActionResult<Class>> DeleteClassDetail(int id)
         {
             var classDetail = await _context.ClassDetails.FindAsync(id);
             if (classDetail == null)
