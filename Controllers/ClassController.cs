@@ -9,39 +9,37 @@ namespace Classroom.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClassDetailsController : ControllerBase
+    public class ClassController : ControllerBase
     {
         private readonly ClassroomDbContext _context;
 
-        public ClassDetailsController(ClassroomDbContext context)
+        public ClassController(ClassroomDbContext context)
         {
             _context = context;
         }
 
         // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Class>>> GetClassDetails()
+        public async Task<ActionResult<IEnumerable<Class>>> GetClasses()
         {
-            return await _context.ClassDetails.ToListAsync();
+            return await _context.Class.ToListAsync();
         }
 
         // GET: api/Class/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Class>> GetClassDetail(int id)
         {
-            var classDetail = await _context.ClassDetails.FindAsync(id);
-
+            var classDetail = await _context.Class.FindAsync(id);
             if (classDetail == null)
             {
                 return NotFound();
             }
-
             return classDetail;
         }
 
         // PUT: api/Class/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClassDetail(int id, Class classDetail)
+        public async Task<IActionResult> PutClass(int id, Class classDetail)
         {
             if (id != classDetail.Id)
             {
@@ -73,7 +71,7 @@ namespace Classroom.Controllers
         [HttpPost]
         public async Task<ActionResult<Class>> PostClassDetail(Class classDetail)
         {
-            _context.ClassDetails.Add(classDetail);
+            _context.Class.Add(classDetail);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetClassDetail", new { id = classDetail.Id }, classDetail);
@@ -83,21 +81,19 @@ namespace Classroom.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Class>> DeleteClassDetail(int id)
         {
-            var classDetail = await _context.ClassDetails.FindAsync(id);
+            var classDetail = await _context.Class.FindAsync(id);
             if (classDetail == null)
             {
                 return NotFound();
             }
-
-            _context.ClassDetails.Remove(classDetail);
+            _context.Class.Remove(classDetail);
             await _context.SaveChangesAsync();
-
             return classDetail;
         }
 
         private bool ClassDetailExists(int id)
         {
-            return _context.ClassDetails.Any(e => e.Id == id);
+            return _context.Class.Any(e => e.Id == id);
         }
     }
 }
