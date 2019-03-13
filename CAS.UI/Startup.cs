@@ -1,4 +1,3 @@
-using Classroom.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,8 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Classroom.Services;
-using Classroom.Models;
-using Microsoft.EntityFrameworkCore;
+using Classroom.Helpers;
 
 namespace Classroom
 {
@@ -29,7 +27,6 @@ namespace Classroom
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<ClassroomDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevCon")));
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
