@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { routing } from './app.routing';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { routing } from './app.routing';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
