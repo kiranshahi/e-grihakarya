@@ -1,7 +1,40 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<!--<nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
     <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
     <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </div>
-</nav>
+</nav>-->
+<!--Main Navigation-->
+<header style="padding-bottom: 90px;">
+  <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar">
+    <a class="navbar-brand" href="/"><strong>Campus Assessment System</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-plus"></i>
+          </a>
+        </li>
+        <li class="nav-item avatar dropdown" dropdown>
+          <a dropdownToggle class="nav-link dropdown-toggle waves-effect waves-light">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0" style="height:30px;">
+          </a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</header>
+<!--Main Navigation-->
