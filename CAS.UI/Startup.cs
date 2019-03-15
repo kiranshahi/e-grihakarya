@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Classroom.Services;
 using Classroom.Helpers;
+using System;
 
 namespace Classroom
 {
@@ -76,6 +77,7 @@ namespace Classroom
             });
             app.UseSpa(spa =>
             {
+                spa.Options.StartupTimeout = new TimeSpan(0, 0, 360);
                 spa.Options.SourcePath = "ClientApp";
                 spa.UseAngularCliServer(npmScript: "start");
             });
