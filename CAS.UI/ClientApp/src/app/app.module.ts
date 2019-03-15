@@ -12,6 +12,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { routing } from './app.routing';
 import { MenuComponent } from './menu/menu.component';
 import { AdminComponent } from './admin/admin.component';
+import { JoinClassComponent } from './join-class/join-class.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { AdminComponent } from './admin/admin.component';
     HomeComponent,
     LoginComponent,
     MenuComponent,
-    AdminComponent
+    AdminComponent,
+    JoinClassComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
