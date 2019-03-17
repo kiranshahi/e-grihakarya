@@ -32,7 +32,7 @@
     </div>
   </nav>
 </header>
-<div mdbModal #joinModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div mdbModal #joinModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -40,10 +40,10 @@
           Join class
         </h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body mx-3">
         Ask your teacher for the class code, then enter it here.
-        <div class="md-form">
-          <input type="text" class="form-control" id="recipient-name">
+        <div class="md-form mb-5">
+          <input type="text" class="form-control validate" mdbInput mdbValidate id="recipient-name">
           <label for="recipient-name" class="">Class code</label>
         </div>
       </div>
@@ -64,14 +64,21 @@
         </h4>
       </div>
       <div class="modal-body">
-        Ask your teacher for the class code, then enter it here.
         <div class="md-form">
-          <input type="text" class="form-control" id="className">
+          <input type="text" class="form-control" id="className" mdbInput>
           <label for="className" class="">Class name (required)</label>
         </div>
         <div class="md-form">
-          <input type="text" class="form-control" id="className">
-          <label for="className" class="">Class name (required)</label>
+          <input type="text" class="form-control" id="className" mdbInput>
+          <label for="className" class="">Section</label>
+        </div>
+        <div class="md-form">
+          <input type="text" class="form-control" id="className" mdbInput>
+          <label for="className" class="">Subject</label>
+        </div>
+        <div class="md-form">
+          <input type="text" class="form-control" id="className" mdbInput>
+          <label for="className" class="">Room</label>
         </div>
       </div>
       <div class="modal-footer">
