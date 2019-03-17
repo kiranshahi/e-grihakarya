@@ -13,6 +13,7 @@ import { routing } from './app.routing';
 import { MenuComponent } from './menu/menu.component';
 import { AdminComponent } from './admin/admin.component';
 import { JoinClassComponent } from './join-class/join-class.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { JoinClassComponent } from './join-class/join-class.component';
     LoginComponent,
     MenuComponent,
     AdminComponent,
-    JoinClassComponent
+    JoinClassComponent,
+    RegisterComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
