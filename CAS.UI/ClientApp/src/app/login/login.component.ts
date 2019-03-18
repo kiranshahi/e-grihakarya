@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
@@ -56,5 +57,9 @@ export class LoginComponent implements OnInit {
           this.error = error;
           this.loading = false;
         });
+  }
+
+  redirectToRegister() {
+    this.router.navigate(['/register']);
   }
 }
