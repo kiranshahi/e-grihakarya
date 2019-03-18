@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CAS
 {
-    public class Class
+    public class CASClass
     {
         [Key]
         public int Id { get; set; }
@@ -17,6 +18,7 @@ namespace CAS
         public string Subject { get; set; }
         [Column(TypeName = "nvarchar(100)")]
         public string Room { get; set; }
+        public List<Assignment> Assignment { get; set; }
         [Required]
         public DateTime AddedOn { get; set; } = DateTime.Now;
     }
