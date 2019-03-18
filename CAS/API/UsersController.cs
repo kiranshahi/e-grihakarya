@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CAS
 {
@@ -8,9 +9,11 @@ namespace CAS
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
-        public UsersController(IUserService userService)
+        private readonly CASContext _context;
+        public UsersController(IUserService userService, CASContext context)
         {
             _userService = userService;
+            _context = context;
         }
         [AllowAnonymous]
         [HttpPost("authenticate")]
@@ -21,6 +24,14 @@ namespace CAS
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             return Ok(user);
+        }
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> Register(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetById", new { id = user.Id}, user);
         }
 
         [Authorize(Roles = Role.Teacher)]
