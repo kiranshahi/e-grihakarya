@@ -23,7 +23,7 @@ namespace CAS
             return Ok(user);
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Teacher)]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -40,7 +40,7 @@ namespace CAS
             }
 
             var currentUserId = int.Parse(User.Identity.Name);
-            if (id != currentUserId && !User.IsInRole(Role.Admin))
+            if (id != currentUserId && !User.IsInRole(Role.Teacher))
             {
                 return Forbid();
             }
