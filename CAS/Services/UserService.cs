@@ -19,8 +19,8 @@ namespace CAS
     {
         private List<User> _users = new List<User>
                 {
-                    new User { Id =1, FirstName="Admin", LastName = "User", Username="admin", Password="admin", Role=Role.Admin},
-                    new User { Id =2, FirstName="Normal", LastName = "User", Username="user", Password="user", Role=Role.User}
+                    new User { Id =1, FirstName="Admin", LastName = "User", Username="admin", Password="admin", Role=Role.Teacher},
+                    new User { Id =2, FirstName="Normal", LastName = "User", Username="user", Password="user", Role=Role.Parent}
                 };
 
         private readonly AppSettings _appSettings;

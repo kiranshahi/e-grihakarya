@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace CAS
 {
@@ -25,7 +26,8 @@ namespace CAS
         {
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddDbContext<CASContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevCon")));
+            
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
