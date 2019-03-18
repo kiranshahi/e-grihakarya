@@ -7,11 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Classroom.Services;
-using Classroom.Helpers;
 using System;
 
-namespace Classroom
+namespace CAS
 {
     public class Startup
     {

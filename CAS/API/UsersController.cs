@@ -1,13 +1,11 @@
-﻿using CAS.Domain;
-using Classroom.Services;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Classroom.Controllers
+namespace CAS
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController: ControllerBase
+    public class UsersController : ControllerBase
     {
         private IUserService _userService;
         public UsersController(IUserService userService)

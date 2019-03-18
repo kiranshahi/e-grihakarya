@@ -1,6 +1,4 @@
-﻿using CAS.Domain;
-using Classroom.Helpers;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -9,7 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace Classroom.Services
+namespace CAS
 {
     public interface IUserService
     {
@@ -18,7 +16,7 @@ namespace Classroom.Services
         User GetById(int id);
     }
     public class UserService : IUserService
-        {
+    {
         private List<User> _users = new List<User>
                 {
                     new User { Id =1, FirstName="Admin", LastName = "User", Username="admin", Password="admin", Role=Role.Admin},
