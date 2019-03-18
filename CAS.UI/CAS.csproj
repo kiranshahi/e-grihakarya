@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -35,11 +35,6 @@
     <None Remove="ClientApp\src\app\_models\user.ts" />
     <None Remove="ClientApp\src\app\_services\authentication.service.ts" />
     <None Remove="ClientApp\src\app\_services\index.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CAS.BL\CAS.BL.csproj" />
-    <ProjectReference Include="..\CAS.Domain\CAS.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
