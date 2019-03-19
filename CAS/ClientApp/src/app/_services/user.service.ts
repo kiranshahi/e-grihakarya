@@ -11,4 +11,7 @@ export class UserService {
   getById(id: number) {
     return this.http.get<User>(`/api/users/${id}`);
   }
+  create(user: User) {
+    return this.http.post<User>(`/api/users/register`, user);
+  }
 }
