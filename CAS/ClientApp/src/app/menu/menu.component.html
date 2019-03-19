@@ -43,13 +43,13 @@
       <div class="modal-body mx-3">
         Ask your teacher for the class code, then enter it here.
         <div class="md-form mb-5">
-          <input type="text" class="form-control validate" mdbInput mdbValidate id="recipient-name">
-          <label for="recipient-name" class="">Class code</label>
+          <input type="text" class="form-control validate" mdbInput mdbValidate id="classCode" [formControl]="classCode">
+          <label for="classCode" class="">Class code</label>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" mdbBtn color="light" class="waves-light" aria-label="Close" (click)="joinModal.hide()" mdbWavesEffect>Cancel</button>
-        <button type="button" mdbBtn color="light" class="relative waves-light" mdbWavesEffect>Join!</button>
+        <button type="button" mdbBtn color="light" class="relative waves-light" mdbWavesEffect (click)="onJoin()">Join!</button>
       </div>
     </div>
   </div>
@@ -65,25 +65,25 @@
       </div>
       <div class="modal-body">
         <div class="md-form">
-          <input type="text" class="form-control" id="className" mdbInput>
+          <input type="text" class="form-control" id="className" mdbInput [formControl]="className">
           <label for="className" class="">Class name (required)</label>
         </div>
         <div class="md-form">
-          <input type="text" class="form-control" id="className" mdbInput>
-          <label for="className" class="">Section</label>
+          <input type="text" class="form-control" id="section" mdbInput [formControl]="section">
+          <label for="section" class="">Section</label>
         </div>
         <div class="md-form">
-          <input type="text" class="form-control" id="className" mdbInput>
-          <label for="className" class="">Subject</label>
+          <input type="text" class="form-control" id="subject" mdbInput [formControl]="subject">
+          <label for="subject" class="">Subject</label>
         </div>
         <div class="md-form">
-          <input type="text" class="form-control" id="className" mdbInput>
-          <label for="className" class="">Room</label>
+          <input type="text" class="form-control" id="room" mdbInput [formControl]="room">
+          <label for="room" class="">Room</label>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" mdbBtn color="light" class="waves-light" aria-label="Close" (click)="create.hide()" mdbWavesEffect>Cancel</button>
-        <button type="button" mdbBtn color="light" class="relative waves-light" mdbWavesEffect>Join!</button>
+        <button type="button" mdbBtn color="light" class="relative waves-light" mdbWavesEffect (click)="onCreate()">Create!</button>
       </div>
     </div>
   </div>

@@ -27,7 +27,8 @@ namespace CAS
 
             return Ok(user);
         }
-        [HttpPost("register")]
+        [AllowAnonymous]
+        [HttpPost]
         public async Task<ActionResult<User>> Register(User user)
         {
             _context.Users.Add(user);
