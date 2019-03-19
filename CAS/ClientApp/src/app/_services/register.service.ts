@@ -7,7 +7,7 @@ export class RegisterService {
 
   constructor(private http: HttpClient) { }
 
-  register(firstname: string, lastname: string, email: string, username: string, password: string, role: string, token: string) {
-    return this.http.post<any>('/api/users/register', { firstname, lastname, email, username, password, role, token });
+  register(firstname: string, lastname: string, email: string, password: string, role: string, token: string) {
+    return this.http.post<any>('/api/users/register', { firstname, lastname, email, password, role, token });
   }
 }
