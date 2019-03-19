@@ -5,9 +5,9 @@
       <p class="h4 mb-4">Sign in</p>
 
       <div class="md-form">
-        <input type="email" formControlName="username" class="form-control mb-4" placeholder="E-mail" mdbInput mdbValiate [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-          <mdb-error *ngIf="f.username.errors.required">E-mail is required.</mdb-error>
+        <input type="email" formControlName="email" class="form-control mb-4" placeholder="E-mail" mdbInput mdbValiate [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <mdb-error *ngIf="f.email.errors.required">E-mail is required.</mdb-error>
         </div>
       </div>
 
@@ -36,7 +36,7 @@
       <!-- Register -->
       <p>
         Not a member?
-        <a (click)="redirectToRegister()">Register</a>
+        <a (click)="redirectToRegister()" style="color: #007bff;">Register</a>
       </p>
     </form>
   </div>

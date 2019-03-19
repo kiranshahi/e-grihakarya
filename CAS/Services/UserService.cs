@@ -19,8 +19,8 @@ namespace CAS
     {
         private List<User> _users = new List<User>
                 {
-                    new User { Id =1, FirstName="Admin", LastName = "User", Username="admin", Password="admin", Role=Role.Teacher},
-                    new User { Id =2, FirstName="Normal", LastName = "User", Username="user", Password="user", Role=Role.Parent}
+                    new User { Id =1, FirstName="Admin", LastName = "User", Email="admin", Password="admin", Role=Role.Teacher},
+                    new User { Id =2, FirstName="Normal", LastName = "User", Email="user", Password="user", Role=Role.Parent}
                 };
 
         private readonly AppSettings _appSettings;
@@ -31,7 +31,7 @@ namespace CAS
         }
         public User Authenticate(string username, string password)
         {
-            var user = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
+            var user = _users.SingleOrDefault(x => x.Email == username && x.Password == password);
 
             if (user == null)
                 return null;

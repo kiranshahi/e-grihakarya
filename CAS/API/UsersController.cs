@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CAS
 {
@@ -19,7 +21,7 @@ namespace CAS
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]User userParam)
         {
-            var user = _userService.Authenticate(userParam.Username, userParam.Password);
+            var user = _userService.Authenticate(userParam.Email, userParam.Password);
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
@@ -31,7 +33,7 @@ namespace CAS
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetById", new { id = user.Id}, user);
+            return CreatedAtAction("GetById", new { id = user.Id }, user);
         }
 
         [Authorize(Roles = Role.Teacher)]
@@ -56,6 +58,37 @@ namespace CAS
                 return Forbid();
             }
             return Ok(user);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, User user)
+        {
+            if (id != user.Id)
+            {
+                return BadRequest();
+            }
+            _context.Entry(user).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+        private bool UserExists(int id)
+        {
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }
