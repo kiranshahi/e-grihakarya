@@ -7,6 +7,7 @@ import { UserService } from "../_services/user.service";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  submitted = false;
   registerForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+    this.submitted = true;
     if (this.registerForm.invalid) {
       return;
     }

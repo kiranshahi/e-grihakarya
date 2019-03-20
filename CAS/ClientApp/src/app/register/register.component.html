@@ -7,6 +7,9 @@
           <div class="md-form">
             <input id="firstName" type="text" class="form-control" formControlName="firstName" mdbInput />
             <label for="firstName">First Name</label>
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <mdb-error *ngIf="f.firstName.errors.required">E-mail is required.</mdb-error>
+            </div>
           </div>
         </div>
         <div class="col">
@@ -23,6 +26,13 @@
       <div class="md-form">
         <input id="password" type="password" class="form-control" formControlName="password" mdbInput />
         <label for="password">Password</label>
+      </div>
+      <div class="select-wrapper md-form mdb-select">
+        <select class="custom-select form-control dropdown-content select-dropdown">
+          <option value="Teacher" selected>Teacher</option>
+          <option value="Student">Student</option>
+          <option value="Parent">Parent</option>
+        </select>
       </div>
       <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign up</button>
       <hr>
