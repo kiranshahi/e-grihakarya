@@ -28,6 +28,6 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.userService.create(this.registerForm.value);
+    this.userService.create(this.registerForm.value).subscribe();
   }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CASClass } from '../_models/casclass';
 import { User } from '../_models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ClassService {
   getById(id: number) {
     return this.http.get<User>(`/api/class/${id}`);
   }
-  create(casClass: CASClass) {
-    return this.http.post<CASClass>(`/api/class`, { casClass });
+  addClass(casClass: CASClass): Observable<CASClass> {
+    return this.http.post<CASClass>("/api/class", casClass);
   }
 }
