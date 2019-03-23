@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -17,25 +18,19 @@ namespace CAS
     }
     public class UserService : IUserService
     {
-        private List<User> _users = new List<User>
-                {
-                    new User { Id =1, FirstName="Admin", LastName = "User", Email="admin", Password="admin", Role=Role.Teacher},
-                    new User { Id =2, FirstName="Normal", LastName = "User", Email="user", Password="user", Role=Role.Parent}
-                };
-
+        private readonly CASContext _context;
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings)
+        public UserService(IOptions<AppSettings> appSettings, CASContext context)
         {
             _appSettings = appSettings.Value;
+            _context = context;
         }
-        public User Authenticate(string username, string password)
+        public User Authenticate(string email, string password)
         {
-            var user = _users.SingleOrDefault(x => x.Email == username && x.Password == password);
-
+            User user = _context.Users.FromSql($"EXECUTE dbo.GetUserByEmailAndPassword @Email = {email}, @Password = {password}").FirstOrDefault();
             if (user == null)
                 return null;
-
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -58,7 +53,8 @@ namespace CAS
 
         public IEnumerable<User> GetAll()
         {
-            return _users.Select(x =>
+            
+            return _context.Users.ToList().Select(x =>
             {
                 x.Password = null;
                 return x;
@@ -67,7 +63,7 @@ namespace CAS
 
         public User GetById(int id)
         {
-            var user = _users.FirstOrDefault(x => x.Id == id);
+            var user = _context.Users.Find(id);
 
             if (user != null)
                 user.Password = null;
