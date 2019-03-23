@@ -72,7 +72,6 @@ namespace CAS
         {
             _context.Classes.Add(classDetail);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetClassDetail", new { id = classDetail.Id }, classDetail);
         }
 
