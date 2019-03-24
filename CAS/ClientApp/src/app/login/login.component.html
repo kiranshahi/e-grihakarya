@@ -1,19 +1,18 @@
-<div class="row">
+<div class="row" style="padding:60px 0;">
   <div class="col-md-6 offset-md-3">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-
       <p class="h4 mb-4">Sign in</p>
-
       <div class="md-form">
-        <input type="email" formControlName="email" class="form-control mb-4" placeholder="E-mail" mdbInput mdbValiate [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <input id="email" type="email" formControlName="email" class="form-control mb-4" mdbInput mdbValiate [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <label for="email">E-mail</label>
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <mdb-error *ngIf="f.email.errors.required">E-mail is required.</mdb-error>
         </div>
       </div>
-
       <!-- Password -->
       <div class="md-form">
-        <input type="password" formControlName="password" class="form-control" placeholder="Password" mdbInput mdbValiate [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+        <input id="password" type="password" formControlName="password" class="form-control" mdbInput mdbValiate [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+        <label for="password">Password</label>
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
           <mdb-error *ngIf="f.password.errors.required">Password is required.</mdb-error>
         </div>
