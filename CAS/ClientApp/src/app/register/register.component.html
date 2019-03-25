@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-      <p class="h4 mb-4">Sign up</p>
+      <p class="h4 mb-4">Create User</p>
       <div class="form-row mb-4">
         <div class="col">
           <div class="md-form">
@@ -28,8 +28,8 @@
         <label for="password">Password</label>
       </div>
       <div class="select-wrapper md-form mdb-select">
-        <select class="custom-select form-control dropdown-content select-dropdown">
-          <option value="Teacher" selected>Teacher</option>
+        <select formControlName="role" class="custom-select form-control dropdown-content select-dropdown">
+          <option value="Teacher">Teacher</option>
           <option value="Admin">Admin</option>
           <option value="Student">Student</option>
           <option value="Parent">Parent</option>
