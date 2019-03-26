@@ -14,6 +14,8 @@ import { MenuComponent } from './menu/menu.component';
 import { AdminComponent } from './admin/admin.component';
 import { JoinClassComponent } from './join-class/join-class.component';
 import { RegisterComponent } from './register/register.component';
+import { AssignmentComponent } from './assignment/assignment.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import { RegisterComponent } from './register/register.component';
     MenuComponent,
     AdminComponent,
     JoinClassComponent,
-    RegisterComponent
+    RegisterComponent,
+    AssignmentComponent,
+    CourseDetailsComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
