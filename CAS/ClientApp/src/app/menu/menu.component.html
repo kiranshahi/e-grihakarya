@@ -13,7 +13,7 @@
           </a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" href="#" mdbWavesEffect (click)="joinModal.show();">Join class</a>
-            <a class="dropdown-item waves-light" href="#" mdbWavesEffect (click)="createModal.show()">Create class</a>
+            <a *ngIf="currentUser.role == 'Admin'|| currentUser.role == 'Teacher'" class="dropdown-item waves-light" href="#" mdbWavesEffect (click)="createModal.show()">Create class</a>
           </div>
         </li>
         <li class="nav-item avatar dropdown" dropdown>

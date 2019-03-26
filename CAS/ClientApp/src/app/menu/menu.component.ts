@@ -4,6 +4,7 @@ import { ClassService } from '../_services/class.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { CASClass } from '../_models/casclass';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +12,7 @@ import { CASClass } from '../_models/casclass';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  currentUser: User;
   classCode = new FormControl('');
 
   className = new FormControl('');
@@ -22,7 +24,9 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private classService: ClassService
-  ) { }
+  ) {
+    this.currentUser = this.authenticationService.currentUserValue;
+  }
 
   ngOnInit() {
   }
