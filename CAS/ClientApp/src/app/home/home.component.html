@@ -1,27 +1,19 @@
-<div class="card-deck">
-  <!-- Card -->
-  <mdb-card>
-    <div class="view overlay waves-light" mdbWavesEffect>
-      <!-- Card img -->
-      <mdb-card-img src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap"></mdb-card-img>
-      <a>
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-    <!--Card content-->
-    <mdb-card-body>
-      <!--Title-->
-      <mdb-card-title>
-        <h4>Card Title</h4>
-      </mdb-card-title>
-
-      <!--Text-->
-      <mdb-card-text>
-        Some quick example text to build on the card title and make up the bulk of the card's
-        content.
-      </mdb-card-text>
-
-      <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>
-    </mdb-card-body>
-  </mdb-card>
+<div class="row">
+  <div class="col-md-3" *ngFor="let class of classes" style="padding-bottom: 10px;">
+    <mdb-card>
+      <mdb-card-img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg" alt="Card image cap"></mdb-card-img>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h4>
+            {{class.className}}
+          </h4>
+        </mdb-card-title>
+        <mdb-card-text>
+          Some quick example text to build on the card title and make up the bulk of the card's
+          content.
+        </mdb-card-text>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
 </div>
