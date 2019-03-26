@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { CASClass } from '../_models/casclass';
 import { User } from '../_models/user';
+import { ModalDirective } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-menu',
@@ -20,6 +21,7 @@ export class MenuComponent implements OnInit {
   subject = new FormControl('');
   room = new FormControl('');
 
+  @ViewChild('createModal') createModal: ModalDirective;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -51,5 +53,7 @@ export class MenuComponent implements OnInit {
     } as CASClass;
     this.classService.addClass(newClass)
       .subscribe();
+    this.router.navigate(['/']);
+    this.createModal.hide();
   }
 }

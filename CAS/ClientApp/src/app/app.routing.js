@@ -5,6 +5,7 @@ var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
 var auth_guard_1 = require("./_guards/auth.guard");
+var role_1 = require("./_models/role");
 var appRoutes = [
     {
         path: '',
@@ -17,7 +18,9 @@ var appRoutes = [
     },
     {
         path: 'register',
-        component: register_component_1.RegisterComponent
+        component: register_component_1.RegisterComponent,
+        canActivate: [auth_guard_1.AuthGuard],
+        data: { roles: [role_1.Role.Admin] }
     },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
