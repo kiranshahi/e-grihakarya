@@ -5,4 +5,5 @@ export class CASClass {
   Subject: string;
   Room: string;
   AddedOn: string;
+  AddedBy: number;
 }
