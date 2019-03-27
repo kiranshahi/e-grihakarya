@@ -49,7 +49,8 @@ export class MenuComponent implements OnInit {
       Section: this.section.value,
       Subject: this.subject.value,
       Room: this.room.value,
-      AddedOn: "05/29/2015 05:50"
+      AddedOn: "05/29/2015 05:50",
+      AddedBy: this.currentUser.id
     } as CASClass;
     this.classService.addClass(newClass)
       .subscribe();

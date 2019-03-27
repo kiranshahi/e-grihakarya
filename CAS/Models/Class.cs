@@ -21,5 +21,7 @@ namespace CAS
         public List<Assignment> Assignment { get; set; }
         [Required]
         public DateTime AddedOn { get; set; } = DateTime.Now;
+        [Required]
+        public int AddedBy { get; set; }
     }
 }

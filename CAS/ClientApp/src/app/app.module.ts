@@ -16,6 +16,7 @@ import { JoinClassComponent } from './join-class/join-class.component';
 import { RegisterComponent } from './register/register.component';
 import { AssignmentComponent } from './assignment/assignment.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
     JoinClassComponent,
     RegisterComponent,
     AssignmentComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    FileUploaderComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
