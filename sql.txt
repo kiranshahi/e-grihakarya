@@ -1,0 +1,1 @@
+ SELECT RAND() AS [RandomNumber]+CAST(GETDATE(), NVARCHAR(20))
