@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { CASClass } from '../_models/casclass';
 import { User } from '../_models/user';
 import { ModalDirective } from 'angular-bootstrap-md';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-menu',
@@ -49,7 +50,7 @@ export class MenuComponent implements OnInit {
       Section: this.section.value,
       Subject: this.subject.value,
       Room: this.room.value,
-      AddedOn: "05/29/2015 05:50",
+      AddedOn: formatDate(new Date(), 'MM/dd/yyyy', 'en'),
       AddedBy: this.currentUser.id
     } as CASClass;
     this.classService.addClass(newClass)
