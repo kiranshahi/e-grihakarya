@@ -24,9 +24,6 @@ export class HomeComponent implements OnInit {
     this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
       this.userFromApi = user;
     });
-    this.bindData();
-  }
-  bindData() {
     this.classService.getAll().subscribe(res => {
       this.classes = res as CASClass[];
     });
