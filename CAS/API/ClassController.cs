@@ -19,9 +19,9 @@ namespace CAS
 
         // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CASClass>>> GetClasses()
+        public async Task<ActionResult<IEnumerable<CASClass>>> GetClasses(string Role, int UserId)
         {
-            return await _context.Classes.ToListAsync();
+            return await _context.Classes.FromSql($"EXECUTE dbo.GetAllClass @Role = {Role}, @Id = {UserId}").ToListAsync();
         }
 
         // GET: api/Class/5

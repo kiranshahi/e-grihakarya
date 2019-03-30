@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +50,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\_models\user.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_services\authentication.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_services\index.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="uploads\files\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

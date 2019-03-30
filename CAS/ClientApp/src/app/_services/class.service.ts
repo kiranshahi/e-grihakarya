@@ -12,7 +12,12 @@ export class ClassService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<CASClass[]>("/api/class");
+    return this.http.get<CASClass[]>("/api/class", {
+      params: {
+        Role: 'Admin',
+        UserId: '1'
+      }
+    });
   }
   getById(id: number) {
     return this.http.get<User>(`/api/class/${id}`);
