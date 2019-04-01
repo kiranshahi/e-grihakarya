@@ -1,19 +1,21 @@
 <div class="row">
   <div class="col-md-3" *ngFor="let class of classes" style="padding-bottom: 10px;">
-    <mdb-card>
-      <mdb-card-img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg" alt="Card image cap"></mdb-card-img>
+    <div class="card">
+      <div class="card-title rgba-indigo-strong">
+        <h3 class="text-white p-2">
+          {{class.className}}
+        </h3>
+        <h5 class="text-white px-2">
+          Kiran Shahi
+        </h5>
+      </div>
       <mdb-card-body>
-        <mdb-card-title>
-          <h4 data-id="{{class.Id}}">
-            {{class.className}}
-          </h4>
-        </mdb-card-title>
         <mdb-card-text>
           Some quick example text to build on the card title and make up the bulk of the card's
           content.
         </mdb-card-text>
-        <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>
+        <a [attr.data-id]="class.id" href="#" mdbBtn color="primary" mdbWavesEffect>View Class</a>
       </mdb-card-body>
-    </mdb-card>
+    </div>
   </div>
 </div>

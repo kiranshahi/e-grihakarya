@@ -68,11 +68,10 @@ namespace CAS
 
         // POST: api/Class
         [HttpPost]
-        public async Task<ActionResult<CASClass>> PostClassDetail(CASClass classDetail)
+        public int PostClassDetail(CASClass classDetail)
         {
-            _context.Classes.Add(classDetail);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetClassDetail", new { id = classDetail.Id }, classDetail);
+            return _context.Database.ExecuteSqlCommand($"dbo.AddClass @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
+            //return _context.Classes.FromSql(").ToString();
         }
 
         // DELETE: api/Class/5
