@@ -24,7 +24,7 @@ var appRoutes = [
         data: { roles: [role_1.Role.Admin] }
     },
     {
-        path: 'course',
+        path: 'course/:id',
         component: course_details_component_1.CourseDetailsComponent,
         canActivate: [auth_guard_1.AuthGuard],
         data: { roles: [role_1.Role.Admin, role_1.Role.Teacher] }

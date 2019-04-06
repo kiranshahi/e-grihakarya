@@ -14,7 +14,7 @@
           Some quick example text to build on the card title and make up the bulk of the card's
           content.
         </mdb-card-text>
-        <a [attr.data-id]="class.id" href="#" mdbBtn color="primary" mdbWavesEffect>View Class</a>
+        <button (click)="onSelect(class)" [attr.data-id]="class.id" mdbBtn color="primary" mdbWavesEffect>View Class</button>
       </mdb-card-body>
     </div>
   </div>

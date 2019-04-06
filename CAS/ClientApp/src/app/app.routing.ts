@@ -24,10 +24,10 @@ const appRoutes: Routes = [
     data: { roles: [Role.Admin] } 
   },
   {
-    path: 'course',
+    path: 'course/:id',
     component: CourseDetailsComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin, Role.Teacher] }
+    data: { roles: [Role.Admin] }
   },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

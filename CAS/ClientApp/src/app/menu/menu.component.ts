@@ -55,7 +55,6 @@ export class MenuComponent implements OnInit {
     } as CASClass;
     this.classService.addClass(newClass)
       .subscribe();
-    this.router.navigate(['/']);
     this.createModal.hide();
   }
 }
