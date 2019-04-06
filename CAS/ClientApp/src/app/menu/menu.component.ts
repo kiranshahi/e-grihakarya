@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { CASClass } from '../_models/casclass';
 import { User } from '../_models/user';
 import { formatDate } from '@angular/common';
+import { ModalDirective } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-menu',
@@ -20,7 +21,7 @@ export class MenuComponent implements OnInit {
   section = new FormControl('');
   subject = new FormControl('');
   room = new FormControl('');
-
+  @ViewChild('createModal') createModal: ModalDirective;
 
   constructor(
     private router: Router,
@@ -54,5 +55,6 @@ export class MenuComponent implements OnInit {
     } as CASClass;
     this.classService.addClass(newClass)
       .subscribe();
+      this.createModal.hide();
   }
 }
