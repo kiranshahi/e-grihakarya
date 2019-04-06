@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CASClass } from '../_models/casclass';
+import { ClassView } from '../_models/classView';
 import { User } from '../_models/user';
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -16,7 +17,7 @@ export class ClassService {
     return this._classMessageSource$;
   }
   getAll() {
-    return this.http.get<CASClass[]>("/api/class", {
+    return this.http.get<ClassView[]>("/api/class", {
       params: {
         Role: 'Admin',
         UserId: '1'
@@ -24,7 +25,7 @@ export class ClassService {
     });
   }
   getById(id: number) {
-    return this.http.get<User>(`/api/class/${id}`);
+    return this.http.get<CASClass>(`/api/class/${id}`);
   }
   addClass(casClass: CASClass): Observable<CASClass> {
     return this.http.post<CASClass>("/api/class", casClass)

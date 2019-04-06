@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { AssignmentComponent } from './assignment/assignment.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { FileUploaderComponent } from './file-uploader/file-uploader.component';
     ReactiveFormsModule,
     HttpClientModule,
     routing,
+    BrowserAnimationsModule,
     MDBBootstrapModule.forRoot()
   ],
   declarations: [
