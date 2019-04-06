@@ -3,7 +3,7 @@ import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../_services/authentication.service';
-import { CASClass } from '../_models/casclass';
+import { ClassView } from '../_models/classView';
 import { ClassService } from '../_services/class.service';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   public currentUser: User;
   public userFromApi: User;
-  public classes: CASClass[] = [];
+  public classes: ClassView[] = [];
   constructor(
     private userService: UserService,
     private authenticationService: AuthenticationService,
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   }
   getAllClass() {
     this.classService.getAll().subscribe(res => {
-      this.classes = res as CASClass[];
+      this.classes = res as ClassView[];
     });
   }
   onSelect(class1){
