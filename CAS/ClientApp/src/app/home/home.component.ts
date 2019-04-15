@@ -35,7 +35,9 @@ export class HomeComponent implements OnInit {
       this.getAllClass();
   }
   getAllClass() {
-    this.classService.getAll().subscribe(res => {
+    let role = this.currentUser.role;
+    let userId = this.currentUser.id;
+    this.classService.getAll(role, userId).subscribe(res => {
       this.classes = res as ClassView[];
     });
   }

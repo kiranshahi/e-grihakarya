@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HttpModule } from '@angular/http'; //NEW
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -19,13 +20,21 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpModule,
     routing,
     BrowserAnimationsModule,
+    MatDatepickerModule, 
+    MatNativeDateModule,
+    NgbModule,
     MDBBootstrapModule.forRoot()
   ],
   declarations: [

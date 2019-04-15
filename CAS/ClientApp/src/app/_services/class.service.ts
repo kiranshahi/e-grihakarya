@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CASClass } from '../_models/casclass';
 import { ClassView } from '../_models/classView';
-import { User } from '../_models/user';
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -16,11 +15,11 @@ export class ClassService {
   get refreshNeeded$(){
     return this._classMessageSource$;
   }
-  getAll() {
+  getAll(role, userId) {
     return this.http.get<ClassView[]>("/api/class", {
       params: {
-        Role: 'Admin',
-        UserId: '1'
+        Role: role,
+        UserId: userId
       }
     });
   }

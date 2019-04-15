@@ -26,8 +26,7 @@ var appRoutes = [
     {
         path: 'course/:id',
         component: course_details_component_1.CourseDetailsComponent,
-        canActivate: [auth_guard_1.AuthGuard],
-        data: { roles: [role_1.Role.Admin] }
+        canActivate: [auth_guard_1.AuthGuard]
     },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
