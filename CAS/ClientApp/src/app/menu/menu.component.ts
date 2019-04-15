@@ -7,6 +7,7 @@ import { CASClass } from '../_models/casclass';
 import { User } from '../_models/user';
 import { formatDate } from '@angular/common';
 import { ModalDirective } from 'angular-bootstrap-md';
+import { Join } from '../_models/join';
 
 @Component({
   selector: 'app-menu',
@@ -40,19 +41,25 @@ export class MenuComponent implements OnInit {
   }
 
   onJoin() {
-    console.log(this.classCode.value);
+    let jClass: Join = {
+      Id: 0,
+      ClassID: this.classCode.value,
+      UserID: this.currentUser.id
+    } as Join;
+    this.classService.joinClass(jClass)
+      .subscribe();
   }
 
   onCreate() {
     let newClass: CASClass = {
-      Id: 0,
-      ClassName: this.className.value,
-      Section: this.section.value,
-      Subject: this.subject.value,
-      Room: this.room.value,
-      AddedOn: formatDate(new Date(), 'MM/dd/yyyy', 'en'),
-      AddedBy: this.currentUser.id
-    } as CASClass;
+        Id: 0,
+        ClassName: this.className.value,
+        Section: this.section.value,
+        Subject: this.subject.value,
+        Room: this.room.value,
+        AddedOn: formatDate(new Date(), 'MM/dd/yyyy', 'en'),
+        AddedBy: this.currentUser.id
+    } as unknown as CASClass;
     this.classService.addClass(newClass)
       .subscribe();
       this.createModal.hide();
