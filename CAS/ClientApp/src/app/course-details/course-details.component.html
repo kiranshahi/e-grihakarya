@@ -2,6 +2,10 @@
   <div class="col-md-8">
     <h3 *ngIf="casClass" class="float-left">{{casClass.className | uppercase }}</h3>
     <button *ngIf="currentUser.role == 'Teacher'" type="button" mdbBtn color="primary" class="relative waves-light float-right" (click)="assignmentModal.show()" mdbWavesEffect>Create Assignment</button>
+    <div class="clearfix"></div>
+    <p *ngIf="currentUser.role == 'Teacher'" class="text-muted">
+      Subject Code: {{casClass.subjectCode}}
+    </p>
   </div>
 </div>
 
@@ -34,7 +38,7 @@
   </div>
 </div>
 
-<div class="clearfix"></div>
+
 <div class="row justify-content-md-center">
   <div class="col-md-8 p-1" *ngFor="let ass of asList">
     <div class="card">

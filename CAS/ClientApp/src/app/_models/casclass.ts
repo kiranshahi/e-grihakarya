@@ -4,6 +4,7 @@ export class CASClass {
   Section: string;
   Subject: string;
   Room: string;
+  SubjectCode: string;
   AddedOn: string;
   AddedBy: string;
 }

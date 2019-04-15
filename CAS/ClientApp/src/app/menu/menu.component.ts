@@ -23,6 +23,7 @@ export class MenuComponent implements OnInit {
   subject = new FormControl('');
   room = new FormControl('');
   @ViewChild('createModal') createModal: ModalDirective;
+  @ViewChild('joinModal') joinModal: ModalDirective;
 
   constructor(
     private router: Router,
@@ -48,6 +49,7 @@ export class MenuComponent implements OnInit {
     } as Join;
     this.classService.joinClass(jClass)
       .subscribe();
+    this.joinModal.hide();
   }
 
   onCreate() {

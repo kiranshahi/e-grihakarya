@@ -18,6 +18,7 @@ namespace CAS
         public string Subject { get; set; }
         [Column(TypeName = "nvarchar(100)")]
         public string Room { get; set; }
+        public string SubjectCode { get; set; }
         public List<Assignment> Assignment { get; set; }
         [Required]
         public DateTime AddedOn { get; set; } = DateTime.Now;
