@@ -12,5 +12,6 @@ namespace CAS
         public string Attachment { get; set; }
         public string DueDate { get; set; }
         public int ClassID { get; set; }
+        public string AddedOn { get; set; }
     }
 }

@@ -1,5 +1,9 @@
-<h3 *ngIf="casClass">{{casClass.className | uppercase }}</h3>
-<button *ngIf="currentUser.role == 'Teacher'" type="button" mdbBtn color="primary" class="relative waves-light" (click)="assignmentModal.show()" mdbWavesEffect>Create Assignment</button>
+<div class="row justify-content-md-center">
+  <div class="col-md-8">
+    <h3 *ngIf="casClass" class="float-left">{{casClass.className | uppercase }}</h3>
+    <button *ngIf="currentUser.role == 'Teacher'" type="button" mdbBtn color="primary" class="relative waves-light float-right" (click)="assignmentModal.show()" mdbWavesEffect>Create Assignment</button>
+  </div>
+</div>
 
 <div mdbModal #assignmentModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -30,11 +34,16 @@
   </div>
 </div>
 
-
-<div class="container">
-  <div class="row" *ngFor="let ass of asList">
-    <div class="col-6 col-sm-4">{{ass.title}}</div>
-    <div class="col-6 col-sm-4">{{ass.instructions}}</div>
-    <div class="col-6 col-sm-4"><a href="{{ass.attachment}}">Attachment</a></div>
+<div class="clearfix"></div>
+<div class="row justify-content-md-center">
+  <div class="col-md-8" *ngFor="let ass of asList">
+    <div class="card">
+      <div class="card-title">
+        <p class="p-2">
+          {{ass.title}}
+        </p>
+        <p class="font-weight-light p-2">{{ass.addedOn}}</p>
+      </div>
+    </div>
   </div>
 </div>

@@ -5,4 +5,5 @@ export class Assignment {
   Attachment: string;
   DueDate: string;
   ClassID: number;
+  AddedOn: string;
 }
