@@ -10,7 +10,7 @@ namespace CAS
         public string Title { get; set; }
         public string Instructions { get; set; }
         public string Attachment { get; set; }
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
         public int ClassID { get; set; }
     }
 }

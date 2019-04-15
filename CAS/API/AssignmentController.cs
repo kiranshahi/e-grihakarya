@@ -19,9 +19,9 @@ namespace CAS
 
         // GET: api/Assignment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignment()
+        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignment(int classId)
         {
-            return await _context.Assignments.ToListAsync();
+            return await _context.Assignments.FromSql($"EXECUTE dbo.GetAssignmentByClassID @ClassId = {classId}").ToListAsync();
         }
 
         // GET: api/Assignment/5
@@ -66,12 +66,9 @@ namespace CAS
 
         // POST: api/Assignment
         [HttpPost]
-        public async Task<ActionResult<Assignment>> PostAssignmentDetail(Assignment assignmentDetail)
+        public int PostAssignmentDetail(Assignment assignmentDetail)
         {
-            _context.Assignments.Add(assignmentDetail);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAssignmentDetail", new { id = assignmentDetail.ID }, assignmentDetail);
+            return _context.Database.ExecuteSqlCommand($"dbo.AddAssignment @AssinmentID = {assignmentDetail.ID}, @title = {assignmentDetail.Title}, @instructions = {assignmentDetail.Instructions}, @attachment = {assignmentDetail.Attachment}, @duedate ={assignmentDetail.DueDate}, @classid ={assignmentDetail.ClassID}");
         }
 
         // DELETE: api/Assignment/5

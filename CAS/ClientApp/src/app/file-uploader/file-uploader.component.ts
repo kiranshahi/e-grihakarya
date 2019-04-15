@@ -9,6 +9,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 export class FileUploaderComponent implements OnInit {
   public progress: number;
   public message: string;
+  public filename: string;
   @Output() public onUploadFinished = new EventEmitter();
 
   constructor(private http: HttpClient) { }
