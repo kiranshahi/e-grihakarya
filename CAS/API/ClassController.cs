@@ -71,7 +71,6 @@ namespace CAS
         public int PostClassDetail(CASClass classDetail)
         {
             return _context.Database.ExecuteSqlCommand($"dbo.AddClass @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
-            //return _context.Classes.FromSql(").ToString();
         }
 
         // DELETE: api/Class/5

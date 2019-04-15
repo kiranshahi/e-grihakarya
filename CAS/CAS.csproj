@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +33,7 @@
     <None Remove="ClientApp\src\app\_guards\auth.guard.ts" />
     <None Remove="ClientApp\src\app\_helpers\error.interceptor.ts" />
     <None Remove="ClientApp\src\app\_helpers\jwt.interceptor.ts" />
+    <None Remove="ClientApp\src\app\_models\join.ts" />
     <None Remove="ClientApp\src\app\_models\role.ts" />
     <None Remove="ClientApp\src\app\_models\user.ts" />
     <None Remove="ClientApp\src\app\_services\authentication.service.ts" />
@@ -46,6 +47,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\_guards\auth.guard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_helpers\error.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_helpers\jwt.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_models\join.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_models\role.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_models\user.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_services\authentication.service.ts" />
