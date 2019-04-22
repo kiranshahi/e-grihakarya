@@ -18,10 +18,10 @@ export class AssignmentComponent implements OnInit {
 
   ngOnInit() {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.loadAssignDetails();
+    this.loadAssignDetails(id);
   }
-  loadAssignDetails() {
-    this.assignmentService.getDetails(this.assignId)
+  loadAssignDetails(id) {
+    this.assignmentService.getDetails(id)
       .subscribe(res => {
         this.assignment = res as Assignment;
       });
