@@ -8,6 +8,7 @@ import { Assignment } from '../_models/assignment';
 import { AssignmentService } from '../_services/assignment.service';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-details',
@@ -29,7 +30,8 @@ export class CourseDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private classService: ClassService,
     private authenticationService: AuthenticationService,
-    private assignmentService: AssignmentService
+    private assignmentService: AssignmentService,
+    private router: Router
   ) {
     this.currentUser = this.authenticationService.currentUserValue;
   }
@@ -79,5 +81,9 @@ export class CourseDetailsComponent implements OnInit {
       .subscribe(res => {
         this.asList = res as Assignment[];
       });
+  }
+
+  onSelect(as) {
+    this.router.navigate(['/assignment', as.id]);
   }
 }

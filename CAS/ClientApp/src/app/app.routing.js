@@ -7,6 +7,7 @@ var register_component_1 = require("./register/register.component");
 var auth_guard_1 = require("./_guards/auth.guard");
 var role_1 = require("./_models/role");
 var course_details_component_1 = require("./course-details/course-details.component");
+var assignment_component_1 = require("./assignment/assignment.component");
 var appRoutes = [
     {
         path: '',
@@ -26,6 +27,11 @@ var appRoutes = [
     {
         path: 'course/:id',
         component: course_details_component_1.CourseDetailsComponent,
+        canActivate: [auth_guard_1.AuthGuard]
+    },
+    {
+        path: 'assignment/:id',
+        component: assignment_component_1.AssignmentComponent,
         canActivate: [auth_guard_1.AuthGuard]
     },
     // otherwise redirect to home

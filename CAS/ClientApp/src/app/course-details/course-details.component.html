@@ -40,12 +40,12 @@
 
 
 <div class="row justify-content-md-center">
-  <div class="col-md-8 p-1" *ngFor="let ass of asList">
-    <div class="card">
-      <p class="pt-2 pl-2">
+  <div class="col-md-8 p-1 hoverable as-item" (click)="onSelect(ass)" *ngFor="let ass of asList">
+    <div>
+      <p class="pt-2 pl-2 as-title">
         {{ass.title}}
       </p>
-      <p class="font-weight-light pl-2">{{ass.addedOn}}</p>
+      <p class="pl-2">Added on: {{ass.addedOn}}</p>
     </div>
   </div>
 </div>
