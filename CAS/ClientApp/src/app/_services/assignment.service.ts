@@ -29,4 +29,7 @@ export class AssignmentService {
       }
     });
   }
+  getDetails(assId) {
+    return this.http.get<Assignment>(`/api/assignment/${assId}`);
+  }
 }

@@ -6,6 +6,8 @@ import { RegisterComponent } from "./register/register.component";
 import { AuthGuard } from "./_guards/auth.guard";
 import { Role } from './_models/role';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { Assignment } from "./_models/assignment";
+import { AssignmentComponent } from './assignment/assignment.component';
 
 const appRoutes: Routes = [
   {
@@ -26,6 +28,11 @@ const appRoutes: Routes = [
   {
     path: 'course/:id',
     component: CourseDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'assignment/:id',
+    component: AssignmentComponent,
     canActivate: [AuthGuard]
   },
   // otherwise redirect to home
