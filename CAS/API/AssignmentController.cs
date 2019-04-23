@@ -25,6 +25,7 @@ namespace CAS
         }
 
         // GET: api/Assignment/5
+        [HttpGet("{id}")]
         public async Task<ActionResult<Assignment>> GetAssignmentDetail(int id)
         {
             var assignmentDetail = await _context.Assignments.FindAsync(id);
