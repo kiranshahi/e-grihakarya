@@ -24,6 +24,10 @@ export class AssignmentComponent implements OnInit {
     this.assignmentService.getDetails(id)
       .subscribe(res => {
         this.assignment = res as Assignment;
+        console.log(res);
       });
+  }
+  clickEvent(elem) {
+    console.log(elem);
   }
 }

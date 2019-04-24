@@ -1,7 +1,8 @@
-<p>
-  assignment works!
-  {{assignment.Title}}
-  {{assignment.Instructions}}
-  {{assignment.Attachment}}
-  {{assignment.DueDate}}
-</p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{assignment.title}}</h5>
+    <p class="card-text">{{assignment.instructions}}</p>
+    <footer class="blockquote-footer">Added On: <cite title="Source Title">{{assignment.addedOn}}</cite></footer>
+    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+</div>
