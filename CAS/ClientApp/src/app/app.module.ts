@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   imports: [
@@ -35,6 +36,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatDatepickerModule, 
     MatNativeDateModule,
     NgbModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     MDBBootstrapModule.forRoot()
   ],
   declarations: [
