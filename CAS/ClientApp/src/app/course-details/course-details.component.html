@@ -27,6 +27,11 @@
           <textarea type="text" class="md-textarea form-control" id="instruction" mdbInput [formControl]="instruction"></textarea>
           <label for="instruction" class="">Instructions (optional)</label>
         </div>
+        <div class="md-form">
+          <input type="text" class="form-control" id="dueDate" [formControl]="dueDate" [owlDateTime]="dt1" mdbInput [owlDateTimeTrigger]="dt1">
+          <label for="dueDate">Date Time</label>
+          <owl-date-time #dt1></owl-date-time>
+        </div>
         <app-file-uploader (onUploadFinished)="uploadFinished($event)"></app-file-uploader>
         <label id="fileName" data-file=""></label>
       </div>
