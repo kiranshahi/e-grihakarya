@@ -26,6 +26,7 @@ export class CourseDetailsComponent implements OnInit {
 
   title = new FormControl('');
   instruction = new FormControl('');
+  dueDate = new FormControl('');
   constructor(
     private route: ActivatedRoute,
     private classService: ClassService,
@@ -68,7 +69,7 @@ export class CourseDetailsComponent implements OnInit {
       Title: this.title.value,
       Instructions: this.instruction.value,
       Attachment: document.getElementById('fileName').dataset.file,
-      DueDate: "",
+      DueDate: this.dueDate.value,
       ClassID: this.classId
     } as Assignment;
     this.assignmentService.addAs(newAs)

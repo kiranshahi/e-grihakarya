@@ -24,7 +24,7 @@ export class AssignmentComponent implements OnInit {
     this.assignmentService.getDetails(id)
       .subscribe(res => {
         this.assignment = res as Assignment;
-        console.log(res);
+        this.assignment.dueDate = new Date(this.assignment.dueDate).toLocaleString("en-Us", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
       });
   }
   clickEvent(elem) {
