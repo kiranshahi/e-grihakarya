@@ -4,6 +4,21 @@
     <p class="card-text">{{assignment.instructions}}</p>
     <footer class="blockquote-footer">Added On: <cite title="Source Title">{{assignment.addedOn}}</cite></footer>
     <footer class="blockquote-footer">Due Date: <cite title="Source Title">{{assignment.dueDate}}</cite></footer>
-    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+</div>
+<div *ngIf="currentUser.role == 'Student'" class="card mt-1">
+  <div class="card-body">
+    <h5 class="card-title">Your Work</h5>
+    <p class="card-text">Mark as done or attach work to turn in</p>
+    <label id="fileName" data-file=""></label>
+    <app-file-uploader (onUploadFinished)="uploadFinished($event)"></app-file-uploader>
+    <button type="button" class="btn btn-primary">Submit Assignment</button>
+  </div>
+</div>
+
+<div *ngIf="currentUser.role == 'Teacher'" *ngFor="let ass of adminAsList" class="card mt-1">
+  <div class="card-body">
+    <p class="card-text">{{ass.name}}</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
 </div>

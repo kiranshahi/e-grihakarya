@@ -17,7 +17,6 @@ import { Join } from '../_models/join';
 export class MenuComponent implements OnInit {
   currentUser: User;
   classCode = new FormControl('');
-
   className = new FormControl('');
   section = new FormControl('');
   subject = new FormControl('');

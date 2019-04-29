@@ -69,7 +69,7 @@ export class CourseDetailsComponent implements OnInit {
       Title: this.title.value,
       Instructions: this.instruction.value,
       Attachment: document.getElementById('fileName').dataset.file,
-      DueDate: this.dueDate.value,
+      dueDate: this.dueDate.value,
       ClassID: this.classId
     } as Assignment;
     this.assignmentService.addAs(newAs)

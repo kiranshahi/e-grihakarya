@@ -14,6 +14,7 @@
                 <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
                   <a *ngIf="currentUser.role == 'Student'|| currentUser.role == 'Parent'" class="dropdown-item waves-light" href="#" mdbWavesEffect (click)="joinModal.show();">Join class</a>
                   <a *ngIf="currentUser.role == 'Admin'|| currentUser.role == 'Teacher'" class="dropdown-item waves-light" href="#" mdbWavesEffect (click)="createModal.show()">Create class</a>
+                  <a *ngIf="currentUser.role == 'Admin'|| currentUser.role == 'Teacher'" class="dropdown-item waves-light" href="/register" mdbWavesEffect>Add User</a>
                 </div>
               </li>
               <li class="nav-item avatar dropdown" dropdown>
@@ -86,4 +87,3 @@
           </div>
         </div>
       </div>
-      

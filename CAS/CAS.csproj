@@ -36,6 +36,7 @@
     <None Remove="ClientApp\src\app\_models\join.ts" />
     <None Remove="ClientApp\src\app\_models\role.ts" />
     <None Remove="ClientApp\src\app\_models\user.ts" />
+    <None Remove="ClientApp\src\app\_models\UserAssignment.ts" />
     <None Remove="ClientApp\src\app\_services\authentication.service.ts" />
     <None Remove="ClientApp\src\app\_services\index.ts" />
   </ItemGroup>
@@ -50,6 +51,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\_models\join.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_models\role.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_models\user.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_models\UserAssignment.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_services\authentication.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_services\index.ts" />
   </ItemGroup>
