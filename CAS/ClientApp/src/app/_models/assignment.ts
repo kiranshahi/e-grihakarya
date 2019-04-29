@@ -3,7 +3,7 @@ export class Assignment {
   Title: string;
   Instructions: string;
   Attachment: string;
-  DueDate: string;
+  dueDate: string;
   ClassID: number;
   AddedOn: string;
 }
