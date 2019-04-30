@@ -4,6 +4,7 @@ import { UserAssignment } from '../_models/UserAssignment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { UserAssignmentAdmin } from '../_models/UserAssignmentAdmin';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,8 @@ export class AssignmentService {
         assignmentID: assignId
       }
     });
+  }
+  addUserAssign(userAssign: UserAssignmentAdmin) {
+    return this.http.post<UserAssignmentAdmin>("/api/UserAssign", userAssign)
   }
 }

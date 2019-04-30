@@ -24,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { PdfViewerModule  } from 'ng2-pdf-viewer'; 
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     NgbModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    PdfViewerModule
   ],
   declarations: [
     AppComponent,

@@ -27,5 +27,11 @@ namespace CAS.API
         {
             return await _context.UserAssignments.FromSql($"EXECUTE dbo.GetAssignmentByUserAndAssID @UserID = {userID}, @AssignmentID = {assignmentID}").ToListAsync();
         }
+        [HttpPost]
+        public int AddUserAssignment(UserAssignmentAdmin userAss)
+        {
+            return _context.Database.ExecuteSqlCommand($"dbo.AddUpdateUserAssignment @UserID = {userAss.UserID}, @AssignmentID = {userAss.AssignmentID}, @Assignment = {userAss.Assignment}");
+        }
+        
     }
 }
