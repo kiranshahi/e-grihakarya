@@ -2,23 +2,41 @@
   <div class="card-body">
     <h5 class="card-title">{{assignment.title}}</h5>
     <p class="card-text">{{assignment.instructions}}</p>
+    <a href="{{assignment.attachment}}">{{assignment.attachment.split('\\')[2]}}</a>
+    <pdf-viewer [src]="assignment.attachment"
+                [render-text]="true"
+                style="display: block;"></pdf-viewer>
     <footer class="blockquote-footer">Added On: <cite title="Source Title">{{assignment.addedOn}}</cite></footer>
     <footer class="blockquote-footer">Due Date: <cite title="Source Title">{{assignment.dueDate}}</cite></footer>
   </div>
 </div>
-<div *ngIf="currentUser.role == 'Student'" class="card mt-1">
-  <div class="card-body">
-    <h5 class="card-title">Your Work</h5>
-    <p class="card-text">Mark as done or attach work to turn in</p>
-    <label id="fileName" data-file=""></label>
-    <app-file-uploader (onUploadFinished)="uploadFinished($event)"></app-file-uploader>
-    <button type="button" class="btn btn-primary">Submit Assignment</button>
+<div *ngIf="currentUser.role == 'Student'">
+  <div *ngFor="let uass of userAsList" class="card mt-1">
+    <div class="card-body">
+      <h5 class="card-title">Your Work</h5>
+      <p class="card-text">Mark as done or attach work to turn in</p>
+      <a href="{{uass.assignment}}" *ngIf="uass.isSubmitted" id="fileName" data-file="">{{uass.assignment.split('\\')[2]}}</a>
+      <label *ngIf="!uass.isSubmitted" id="fileName" data-file=""></label>
+      <app-file-uploader (onUploadFinished)="uploadFinished($event)"></app-file-uploader>
+      <button *ngIf="uass.isSubmitted" type="button" class="btn btn-primary" (click)="onSubmitAssign()">Resubmit Assignment</button>
+      <button *ngIf="!uass.isSubmitted" type="button" class="btn btn-primary" (click)="onSubmitAssign()">Submit Assignment</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="currentUser.role == 'Teacher'">
+  <div *ngFor="let ass of adminAsList" class="card mt-1">
+    <div class="card-body">
+      <p class="card-text">{{ass.name}}</p>
+      <p class="card-text" *ngIf="ass.isSubmitted"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <p class="card-text" *ngIf="!ass.isSubmitted"><small class="text-muted">Assignment not submitted yet.</small></p>
+    </div>
   </div>
 </div>
 
-<div *ngIf="currentUser.role == 'Teacher'" *ngFor="let ass of adminAsList" class="card mt-1">
-  <div class="card-body">
-    <p class="card-text">{{ass.name}}</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<div class="card-body">
+  <div class="md-form">
+    <input type="text" id="comment" class="form-control mb-4" formControlName="comment" mdbInput />
+    <label for="comment">Comment</label>
   </div>
+  <button type="button" class="btn btn-primary" (click)="onSubmitAssign()">Comment</button>
 </div>

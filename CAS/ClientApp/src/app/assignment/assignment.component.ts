@@ -5,6 +5,7 @@ import { Assignment } from '../_models/assignment';
 import { User } from '../_models/user';
 import { AuthenticationService } from '../_services';
 import { UserAssignment } from '../_models/UserAssignment';
+import { UserAssignmentAdmin } from '../_models/UserAssignmentAdmin';
 
 @Component({
   selector: 'app-assignment',
@@ -17,6 +18,8 @@ export class AssignmentComponent implements OnInit {
   public assignment: Assignment = null;
   public adminAsList: UserAssignment[] = [];
   public userAsList: UserAssignment[] = [];
+  public response: { dbPath: '' };
+  public filename: string;
   constructor(
     private route: ActivatedRoute,
     private assignmentService: AssignmentService,
@@ -25,6 +28,7 @@ export class AssignmentComponent implements OnInit {
 
   ngOnInit() {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.assignId = id;
     this.loadAssignDetails(id);
     this.getUserAssignment(id);
     this.getUserAssignmentByID(this.currentUser.id, id);
@@ -48,7 +52,19 @@ export class AssignmentComponent implements OnInit {
         this.userAsList = res as UserAssignment[];
       });
   }
-  clickEvent(elem) {
-    console.log(elem);
+  public uploadFinished = (event) => {
+    let fileElem = document.getElementById("fileName");
+    this.response = event;
+    this.filename = this.response.dbPath.split('\\')[2];
+    fileElem.innerHTML = this.filename;
+    fileElem.dataset.file = this.response.dbPath;
+  }
+  onSubmitAssign() {
+    let userAssign: UserAssignmentAdmin = {
+      UserID: this.currentUser.id,
+      AssignmentID: this.assignId,
+      Assignment: document.getElementById('fileName').dataset.file,
+    } as UserAssignmentAdmin;
+    this.assignmentService.addUserAssign(userAssign).subscribe();
   }
 }
