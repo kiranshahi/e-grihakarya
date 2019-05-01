@@ -11,6 +11,7 @@ import { FormControl } from '@angular/forms';
 import { Comment } from '@angular/compiler';
 import { Comments } from '../_models/Comments';
 import { CommentView } from '../_models/CommentView';
+import { ModalDirective } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-assignment',
@@ -26,8 +27,9 @@ export class AssignmentComponent implements OnInit {
   public commentList: CommentView[] = [];
   public response: { dbPath: '' };
   public filename: string;
+  public pdfSrc: string;
+  @ViewChild('pdfModal') pdfModal: ModalDirective;
   @ViewChild('comment') comment: ElementRef;
-
   constructor(
     private route: ActivatedRoute,
     private assignmentService: AssignmentService,
@@ -70,7 +72,7 @@ export class AssignmentComponent implements OnInit {
   public uploadFinished = (event) => {
     let fileElem = document.getElementById("fileName");
     this.response = event;
-    this.filename = this.response.dbPath.split('\\')[2];
+    this.filename = this.response.dbPath.split('\\')[4];
     fileElem.innerHTML = this.filename;
     fileElem.dataset.file = this.response.dbPath;
   }
@@ -96,5 +98,11 @@ export class AssignmentComponent implements OnInit {
     } as Comments;
     this.commentService.addComment(cmt)
       .subscribe();
+  }
+  pdfViwer(el) {
+    this.pdfSrc = location.origin + '/' + el.getAttribute('data-file');
+    console.log(this.pdfSrc);
+    this.pdfSrc = "../../assets/1536744413.pdf";
+    this.pdfModal.show();
   }
 }
