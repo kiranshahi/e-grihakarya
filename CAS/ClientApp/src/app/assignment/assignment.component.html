@@ -32,11 +32,18 @@
     </div>
   </div>
 </div>
-
-<div class="card-body">
-  <div class="md-form">
-    <input type="text" id="comment" class="form-control mb-4" formControlName="comment" mdbInput />
-    <label for="comment">Comment</label>
+<div class="card mt-1">
+  <div class="card-body">
+    <div class="md-form">
+      <input type="text" id="comment" class="form-control mb-4" mdbInput #comment />
+      <label for="comment">Comment</label>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addComment()">Comment</button>
   </div>
-  <button type="button" class="btn btn-primary" (click)="onSubmitAssign()">Comment</button>
+</div>
+<div *ngFor="let cl of commentList" class="card mt-1">
+  <div class="card-body">
+    <p class="card-text">{{cl.name}} says</p>
+    <p class="card-text">{{cl.comment}}</p>
+  </div>
 </div>

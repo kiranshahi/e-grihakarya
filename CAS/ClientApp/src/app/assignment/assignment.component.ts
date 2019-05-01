@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '../_services/assignment.service';
 import { Assignment } from '../_models/assignment';
@@ -6,6 +6,11 @@ import { User } from '../_models/user';
 import { AuthenticationService } from '../_services';
 import { UserAssignment } from '../_models/UserAssignment';
 import { UserAssignmentAdmin } from '../_models/UserAssignmentAdmin';
+import { CommentService } from '../_services/comment.service';
+import { FormControl } from '@angular/forms';
+import { Comment } from '@angular/compiler';
+import { Comments } from '../_models/Comments';
+import { CommentView } from '../_models/CommentView';
 
 @Component({
   selector: 'app-assignment',
@@ -18,12 +23,16 @@ export class AssignmentComponent implements OnInit {
   public assignment: Assignment = null;
   public adminAsList: UserAssignment[] = [];
   public userAsList: UserAssignment[] = [];
+  public commentList: CommentView[] = [];
   public response: { dbPath: '' };
   public filename: string;
+  @ViewChild('comment') comment: ElementRef;
+
   constructor(
     private route: ActivatedRoute,
     private assignmentService: AssignmentService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private commentService: CommentService
   ) { this.currentUser = this.authenticationService.currentUserValue; }
 
   ngOnInit() {
@@ -32,6 +41,12 @@ export class AssignmentComponent implements OnInit {
     this.loadAssignDetails(id);
     this.getUserAssignment(id);
     this.getUserAssignmentByID(this.currentUser.id, id);
+    this.commentService.refreshNeeded$
+      .subscribe(
+        message => {
+          this.getComments(id);
+        });
+    this.getComments(id);
   }
   loadAssignDetails(id) {
     this.assignmentService.getDetails(id)
@@ -66,5 +81,20 @@ export class AssignmentComponent implements OnInit {
       Assignment: document.getElementById('fileName').dataset.file,
     } as UserAssignmentAdmin;
     this.assignmentService.addUserAssign(userAssign).subscribe();
+  }
+  getComments(id) {
+    this.commentService.getComment(id)
+      .subscribe(res => {
+        this.commentList = res as CommentView[];
+      });
+  }
+  addComment() {
+    let cmt: Comments = {
+      UserId: this.currentUser.id,
+      AssignmentID: this.assignId,
+      Comment: this.comment.nativeElement.value
+    } as Comments;
+    this.commentService.addComment(cmt)
+      .subscribe();
   }
 }

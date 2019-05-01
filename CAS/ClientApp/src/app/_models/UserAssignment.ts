@@ -4,5 +4,6 @@ export class UserAssignment {
   AssignmentID: number;
   Assignment: string;
   IsSubmitted: boolean;
+  SubmittedOn:string;
   Name: string;
 }

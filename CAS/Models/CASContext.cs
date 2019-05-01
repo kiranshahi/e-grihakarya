@@ -14,5 +14,6 @@ namespace CAS
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<UserClass> UserClasses { get; set; }
         public DbSet<UserAssignment> UserAssignments { get; set; }
+        public DbSet<CommentView> Comments { get; set; }
     }
 }
