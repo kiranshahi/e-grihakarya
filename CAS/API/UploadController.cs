@@ -18,7 +18,7 @@ namespace CAS.API
             try
             {
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("uploads", "files");
+                var folderName = Path.Combine("ClientApp", "src", "assets");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if (file.Length > 0)
