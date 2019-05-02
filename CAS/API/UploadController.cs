@@ -18,12 +18,12 @@ namespace CAS.API
             try
             {
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("ClientApp", "src", "assets");
+                var folderName = Path.Combine("wwwroot", "uploads", "files");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if (file.Length > 0)
                 {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ","-");
                     var fullPath = Path.Combine(pathToSave, fileName);
                     var dbPath = Path.Combine(folderName, fileName);
 

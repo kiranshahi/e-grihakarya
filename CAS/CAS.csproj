@@ -45,6 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\uploads\files\1536744413.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />

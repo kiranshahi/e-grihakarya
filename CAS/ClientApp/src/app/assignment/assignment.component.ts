@@ -100,9 +100,7 @@ export class AssignmentComponent implements OnInit {
       .subscribe();
   }
   pdfViwer(el) {
-    this.pdfSrc = location.origin + '/' + el.getAttribute('data-file');
-    console.log(this.pdfSrc);
-    this.pdfSrc = "../../assets/1536744413.pdf";
+    this.pdfSrc = `/uploads/files/${el.getAttribute('data-file')}`;
     this.pdfModal.show();
   }
 }
