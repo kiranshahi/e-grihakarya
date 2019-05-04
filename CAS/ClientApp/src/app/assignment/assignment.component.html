@@ -22,11 +22,20 @@
         </div>
       </div>
     </div>
-    <div *ngIf="currentUser.role == 'Teacher'">
+    <div *ngIf="currentUser.role == 'Teacher' || currentUser.role == 'Admin'">
       <div *ngFor="let ass of adminAsList" class="card mt-1">
         <div class="card-body">
           <p class="card-text">{{ass.name}}</p>
           <button *ngIf="ass.isSubmitted" id="fileName" type="button" mdbBtn color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" mdbWavesEffect #pdfEl [attr.data-file]="ass.assignment.split('\\')[3]">{{ass.assignment.split('\\')[3]}}</button>
+          <p class="card-text" *ngIf="ass.isSubmitted"><small class="text-muted">Submitted on {{ass.SubmittedOn}}</small></p>
+          <p class="card-text" *ngIf="!ass.isSubmitted"><small class="text-muted">Assignment not submitted yet.</small></p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="currentUser.role == 'Parent'">
+      <div *ngFor="let ass of adminAsList" class="card mt-1">
+        <div class="card-body">
+          <p class="card-text">{{ass.name}}</p>
           <p class="card-text" *ngIf="ass.isSubmitted"><small class="text-muted">Submitted on {{ass.SubmittedOn}}</small></p>
           <p class="card-text" *ngIf="!ass.isSubmitted"><small class="text-muted">Assignment not submitted yet.</small></p>
         </div>
