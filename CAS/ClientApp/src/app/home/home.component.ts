@@ -26,13 +26,13 @@ export class HomeComponent implements OnInit {
     this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
       this.userFromApi = user;
     });
-    
+
     this.classService.refreshNeeded$
-    .subscribe(
-      message => {
-        this.getAllClass();
-      });
-      this.getAllClass();
+      .subscribe(
+        message => {
+          this.getAllClass();
+        });
+    this.getAllClass();
   }
   getAllClass() {
     let role = this.currentUser.role;
@@ -41,7 +41,10 @@ export class HomeComponent implements OnInit {
       this.classes = res as ClassView[];
     });
   }
-  onSelect(class1){
+  onSelect(class1) {
     this.router.navigate(['/course', class1.id]);
+  }
+  onDelete(class1) {
+    this.classService.deleteClass(class1.id).subscribe();
   }
 }

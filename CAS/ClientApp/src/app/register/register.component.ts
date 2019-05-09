@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from "../_services/user.service";
 @Component({
   selector: 'app-register',
@@ -9,6 +9,7 @@ import { UserService } from "../_services/user.service";
 export class RegisterComponent implements OnInit {
   submitted = false;
   registerForm: FormGroup;
+  role = new FormControl('');
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+    console.log(this.role.value);
     this.submitted = true;
     if (this.registerForm.invalid) {
       return;

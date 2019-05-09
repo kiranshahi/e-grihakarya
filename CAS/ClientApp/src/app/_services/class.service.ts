@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CASClass } from '../_models/casclass';
 import { ClassView } from '../_models/classView';
 import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, retry } from 'rxjs/operators';
 import { Join } from '../_models/join';
 
 @Injectable({
@@ -42,5 +42,12 @@ export class ClassService {
           this._classMessageSource$.next();
         })
       )
+  }
+  deleteClass(id: number) {
+    return this.http.delete(`/api/class/${id}`).pipe(
+      tap(() => {
+        this._classMessageSource$.next();
+      })
+    )
   }
 }
