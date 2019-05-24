@@ -13,6 +13,7 @@ namespace CAS.API
     [ApiController]
     public class UploadController : ControllerBase
     {
+        [HttpPost]
         public IActionResult Upload()
         {
             try
