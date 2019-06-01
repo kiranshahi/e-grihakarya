@@ -14,6 +14,7 @@ namespace CAS
         public string DueDate { get; set; }
         public int ClassID { get; set; }
         public string AddedOn { get; set; }
+        public User CreateBy {get; set;}
         public List<Comments> Comments { get; set; }
     }
 }

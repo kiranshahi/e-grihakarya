@@ -23,5 +23,6 @@ namespace CAS
         [Required]
         public DateTime AddedOn { get; set; } = DateTime.Now;
         public int AddedBy { get; set; }
+        public List<UserClass> UserClass { get; set; }
     }
 }
