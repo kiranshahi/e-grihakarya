@@ -18,14 +18,14 @@ namespace CAS.API
             _context = context;
         }
         [HttpGet("getuserasign")]
-        public async Task<ActionResult<IEnumerable<UserAssignment>>> GetUserAssign(int assignId)
+        public async Task<ActionResult<IEnumerable<Assignment>>> GetUserAssign(int assignId)
         {
-            return await _context.UserAssignments.FromSql($"EXECUTE dbo.GetUserAssignment @AssignmentID = {assignId}").ToListAsync();
+            return await _context.Assignments.FromSql($"EXECUTE dbo.GetUserAssignment @AssignmentID = {assignId}").ToListAsync();
         }
         [HttpGet("GetAssignmentById")]
-        public async Task<ActionResult<IEnumerable<UserAssignment>>> GetAssignmentByUserAndAssID(int userID, int assignmentID)
+        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignmentByUserAndAssID(int userID, int assignmentID)
         {
-            return await _context.UserAssignments.FromSql($"EXECUTE dbo.GetAssignmentByUserAndAssID @UserID = {userID}, @AssignmentID = {assignmentID}").ToListAsync();
+            return await _context.Assignments.FromSql($"EXECUTE dbo.GetAssignmentByUserAndAssID @UserID = {userID}, @AssignmentID = {assignmentID}").ToListAsync();
         }
         [HttpPost]
         public int AddUserAssignment(UserAssignmentAdmin userAss)
