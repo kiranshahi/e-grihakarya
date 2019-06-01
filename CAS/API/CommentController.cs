@@ -18,7 +18,7 @@ namespace CAS.API
             _context = context;
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<CommentView>>> GetComments(int id)
+        public async Task<ActionResult<IEnumerable<Comments>>> GetComments(int id)
         {
             return await _context.Comments.FromSql($"EXECUTE dbo.GetComment @AssignmentID = {id}").ToListAsync();
         }

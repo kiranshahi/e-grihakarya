@@ -4,14 +4,16 @@ using CAS;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CAS.Migrations
 {
     [DbContext(typeof(CASContext))]
-    partial class CASContextModelSnapshot : ModelSnapshot
+    [Migration("20190601050115_modulesupdate")]
+    partial class modulesupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,23 +82,17 @@ namespace CAS.Migrations
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("CAS.Comments", b =>
+            modelBuilder.Entity("CAS.CommentView", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AssignmentID");
-
                     b.Property<string>("Comment");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AssignmentID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -136,19 +132,6 @@ namespace CAS.Migrations
                     b.HasOne("CAS.User")
                         .WithMany("classes")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("CAS.Comments", b =>
-                {
-                    b.HasOne("CAS.Assignment")
-                        .WithMany("Comments")
-                        .HasForeignKey("AssignmentID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CAS.User")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

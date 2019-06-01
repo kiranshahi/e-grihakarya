@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CAS
@@ -13,5 +14,6 @@ namespace CAS
         public string DueDate { get; set; }
         public int ClassID { get; set; }
         public string AddedOn { get; set; }
+        public List<Comments> Comments { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace CAS
+﻿using System.Collections.Generic;
+
+namespace CAS
 {
     public class User
     {
@@ -9,5 +11,7 @@
         public string Password { get; set; }
         public string Role { get; set; }
         public string Token { get; set; }
+        public List<CASClass> classes {get; set;}
+        public List<Comments> Comments {get; set;}
     }
 }
