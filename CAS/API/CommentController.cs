@@ -25,7 +25,7 @@ namespace CAS.API
         [HttpPost]
         public int AddComment(Comments commnet)
         {
-            return _context.Database.ExecuteSqlCommand($"dbo.AddComment @UserId = {commnet.UserId}, @AssignmentID = {commnet.AssignmentID}, @Comment = {commnet.Comment}");
+            return _context.Database.ExecuteSqlCommand($"dbo.AddComment @UserId = {commnet.UserID}, @AssignmentID = {commnet.AssignmentID}, @Comment = {commnet.Comment}");
         }
     }
 }

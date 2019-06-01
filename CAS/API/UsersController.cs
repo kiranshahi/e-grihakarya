@@ -86,7 +86,17 @@ namespace CAS
             }
             return NoContent();
         }
-
+        public async Task<ActionResult<User>> DeleteUser(int id)
+        {
+            var userDetails = await _context.Users.FindAsync(id);
+            if (userDetails == null)
+            {
+                return NotFound();
+            }
+            _context.Users.Remove(userDetails);
+            await _context.SaveChangesAsync();
+            return userDetails;
+        }
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);

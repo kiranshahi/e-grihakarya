@@ -33,6 +33,8 @@ namespace CAS.Migrations
 
                     b.Property<int>("ClassID");
 
+                    b.Property<int?>("CreateById");
+
                     b.Property<string>("DueDate");
 
                     b.Property<string>("Instructions");
@@ -42,6 +44,8 @@ namespace CAS.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CASClassId");
+
+                    b.HasIndex("CreateById");
 
                     b.ToTable("Assignments");
                 });
@@ -71,11 +75,7 @@ namespace CAS.Migrations
 
                     b.Property<string>("SubjectCode");
 
-                    b.Property<int?>("UserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Classes");
                 });
@@ -90,13 +90,13 @@ namespace CAS.Migrations
 
                     b.Property<string>("Comment");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("UserID");
 
                     b.HasKey("ID");
 
                     b.HasIndex("AssignmentID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Comments");
                 });
@@ -124,30 +124,53 @@ namespace CAS.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("CAS.UserClass", b =>
+                {
+                    b.Property<int>("ClassID");
+
+                    b.Property<int>("UserID");
+
+                    b.HasKey("ClassID", "UserID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("UserClass");
+                });
+
             modelBuilder.Entity("CAS.Assignment", b =>
                 {
                     b.HasOne("CAS.CASClass")
                         .WithMany("Assignment")
                         .HasForeignKey("CASClassId");
-                });
 
-            modelBuilder.Entity("CAS.CASClass", b =>
-                {
-                    b.HasOne("CAS.User")
-                        .WithMany("classes")
-                        .HasForeignKey("UserId");
+                    b.HasOne("CAS.User", "CreateBy")
+                        .WithMany("Assignments")
+                        .HasForeignKey("CreateById");
                 });
 
             modelBuilder.Entity("CAS.Comments", b =>
                 {
-                    b.HasOne("CAS.Assignment")
+                    b.HasOne("CAS.Assignment", "Assignment")
                         .WithMany("Comments")
                         .HasForeignKey("AssignmentID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("CAS.User")
+                    b.HasOne("CAS.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CAS.UserClass", b =>
+                {
+                    b.HasOne("CAS.CASClass", "Class")
+                        .WithMany("UserClass")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CAS.User", "User")
+                        .WithMany("UserClass")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

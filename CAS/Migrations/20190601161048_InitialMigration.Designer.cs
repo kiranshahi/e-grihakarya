@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CAS.Migrations
 {
     [DbContext(typeof(CASContext))]
-    [Migration("20190601044926_dbupdate")]
-    partial class dbupdate
+    [Migration("20190601161048_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,8 @@ namespace CAS.Migrations
 
                     b.Property<int>("ClassID");
 
+                    b.Property<int?>("CreateById");
+
                     b.Property<string>("DueDate");
 
                     b.Property<string>("Instructions");
@@ -44,6 +46,8 @@ namespace CAS.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CASClassId");
+
+                    b.HasIndex("CreateById");
 
                     b.ToTable("Assignments");
                 });
@@ -73,47 +77,28 @@ namespace CAS.Migrations
 
                     b.Property<string>("SubjectCode");
 
-                    b.Property<int?>("UserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("CAS.ClassView", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClassName");
-
-                    b.Property<string>("Room");
-
-                    b.Property<string>("Section");
-
-                    b.Property<string>("Subject");
-
-                    b.Property<string>("Teacher");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClassesView");
-                });
-
-            modelBuilder.Entity("CAS.CommentView", b =>
+            modelBuilder.Entity("CAS.Comments", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AssignmentID");
+
                     b.Property<string>("Comment");
 
-                    b.Property<string>("Name");
+                    b.Property<int>("UserID");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AssignmentID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Comments");
                 });
@@ -141,42 +126,17 @@ namespace CAS.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CAS.UserAssignment", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Assignment");
-
-                    b.Property<int>("AssignmentID");
-
-                    b.Property<bool>("IsSubmitted");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("SubmittedOn");
-
-                    b.Property<int>("UserID");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("UserAssignments");
-                });
-
             modelBuilder.Entity("CAS.UserClass", b =>
                 {
-                    b.Property<int>("UserClassID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("ClassID");
 
                     b.Property<int>("UserID");
 
-                    b.HasKey("UserClassID");
+                    b.HasKey("ClassID", "UserID");
 
-                    b.ToTable("UserClasses");
+                    b.HasIndex("UserID");
+
+                    b.ToTable("UserClass");
                 });
 
             modelBuilder.Entity("CAS.Assignment", b =>
@@ -184,13 +144,36 @@ namespace CAS.Migrations
                     b.HasOne("CAS.CASClass")
                         .WithMany("Assignment")
                         .HasForeignKey("CASClassId");
+
+                    b.HasOne("CAS.User", "CreateBy")
+                        .WithMany("Assignments")
+                        .HasForeignKey("CreateById");
                 });
 
-            modelBuilder.Entity("CAS.CASClass", b =>
+            modelBuilder.Entity("CAS.Comments", b =>
                 {
-                    b.HasOne("CAS.User")
-                        .WithMany("classes")
-                        .HasForeignKey("UserId");
+                    b.HasOne("CAS.Assignment", "Assignment")
+                        .WithMany("Comments")
+                        .HasForeignKey("AssignmentID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CAS.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CAS.UserClass", b =>
+                {
+                    b.HasOne("CAS.CASClass", "Class")
+                        .WithMany("UserClass")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CAS.User", "User")
+                        .WithMany("UserClass")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
