@@ -233,4 +233,4 @@ _Pvt_Extensions
 .fake/
 
 # AppSetting
-CAS/appsettings.json
+appsettings.json
