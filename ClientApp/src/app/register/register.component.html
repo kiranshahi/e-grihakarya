@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
+      <p class="h4 mb-4">Create User</p>
+      <div class="form-row mb-4">
+        <div class="col">
+          <div class="md-form">
+            <input id="firstName" type="text" class="form-control" formControlName="firstName" mdbInput />
+            <label for="firstName">First Name</label>
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <mdb-error *ngIf="f.firstName.errors.required">E-mail is required.</mdb-error>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="md-form">
+            <input id="lastName" type="text" class="form-control" formControlName="lastName" mdbInput />
+            <label for="lastName">Last Name</label>
+          </div>
+        </div>
+      </div>
+      <div class="md-form">
+        <input type="email" id="email" class="form-control mb-4" formControlName="email" mdbInput />
+        <label for="email">E-mail</label>
+      </div>
+      <div class="md-form">
+        <input id="password" type="password" class="form-control" formControlName="password" mdbInput />
+        <label for="password">Password</label>
+      </div>
+      <div class="select-wrapper md-form mdb-select">
+        <select formControlName="role" class="custom-select form-control dropdown-content select-dropdown">
+          <option value="Teacher">Teacher</option>
+          <option value="Admin">Admin</option>
+          <option value="Student">Student</option>
+          <option value="Parent">Parent</option>
+        </select>
+      </div>
+      <button mdbBtn color="info" block="true" class="my-4" type="submit">Add user</button>
+    </form>
+  </div>
+</div>
