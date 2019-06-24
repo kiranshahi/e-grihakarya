@@ -1,4 +1,4 @@
-﻿namespace CAS
+﻿namespace egrihakarya
 {
     public class JoinClass
     {

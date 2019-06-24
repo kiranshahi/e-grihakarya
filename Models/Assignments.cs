@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace CAS
+namespace egrihakarya
 {
-    public class Assignment
+    public partial class Assignments
     {
-        [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Instructions { get; set; }
         public string Attachment { get; set; }
         public string DueDate { get; set; }
-        public int ClassID { get; set; }
+        public int? CasclassId { get; set; }
+        public int ClassId { get; set; }
         public string AddedOn { get; set; }
-        public User CreateBy {get; set;}
-        public List<Comments> Comments { get; set; }
     }
 }
