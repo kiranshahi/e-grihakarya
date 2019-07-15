@@ -23,8 +23,7 @@ namespace egrihakarya
         {
             var user = _userService.Authenticate(userParam.Email, userParam.Password);
             if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
-
+                return BadRequest("Username or password is incorrect");
             return Ok(user);
         }
         [AllowAnonymous]
@@ -91,7 +90,7 @@ namespace egrihakarya
             var userDetails = await _context.Users.FindAsync(id);
             if (userDetails == null)
             {
-                return NotFound();
+                return NotFound("User not found.");
             }
             _context.Users.Remove(userDetails);
             await _context.SaveChangesAsync();

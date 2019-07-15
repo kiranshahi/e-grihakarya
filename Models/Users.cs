@@ -13,5 +13,6 @@ namespace egrihakarya
         public string Password { get; set; }
         public string Role { get; set; }
         public string Token { get; set; }
+        public ICollection<UserClasses> Classes { get; set; }
     }
 }

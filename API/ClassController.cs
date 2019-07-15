@@ -19,9 +19,23 @@ namespace egrihakarya
 
         // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Classes>>> GetClasses(string Role, int UserId)
+        public async Task<ActionResult<IEnumerable<UserClasses>>> GetClasses(string Role, int UserId)
         {
-            return await _context.Classes.FromSql($"EXECUTE dbo.GetAllClass @Role = {Role}, @Id = {UserId}").ToListAsync();
+            var classesList = from c in _context.UserClasses select c;
+            switch (Role.ToLower())
+            {
+                case "admin":
+                    classesList = classesList.Include("Uclass")
+                        .SelectMany(uc => uc.Uclass.Where(c => c.AddedBy == UserId))
+                    break;
+                case "teacher":
+                    classesList = classesList.OrderBy(c => c.AddedOn);
+                    break;
+                default:
+                    classesList = classesList.OrderBy(c => c.AddedOn);
+                    break;
+            }
+            return Ok(await classesList.AsNoTracking().ToListAsync());
         }
 
         // GET: api/Class/5
