@@ -11,7 +11,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace CAS
+namespace egrihakarya
 {
     public class Startup
     {
@@ -27,7 +27,7 @@ namespace CAS
         {
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<CASContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevCon")));
+            services.AddDbContext<ClassroomContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevCon")));
             
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);

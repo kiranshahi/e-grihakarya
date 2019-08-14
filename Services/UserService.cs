@@ -8,27 +8,27 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace CAS
+namespace egrihakarya
 {
     public interface IUserService
     {
-        User Authenticate(string username, string password);
-        IEnumerable<User> GetAll();
-        User GetById(int id);
+        Users Authenticate(string username, string password);
+        IEnumerable<Users> GetAll();
+        Users GetById(int id);
     }
     public class UserService : IUserService
     {
-        private readonly CASContext _context;
+        private readonly ClassroomContext _context;
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings, CASContext context)
+        public UserService(IOptions<AppSettings> appSettings, ClassroomContext context)
         {
             _appSettings = appSettings.Value;
             _context = context;
         }
-        public User Authenticate(string email, string password)
+        public Users Authenticate(string email, string password)
         {
-            User user = _context.Users.FromSql($"EXECUTE dbo.GetUserByEmailAndPassword @Email = {email}, @Password = {password}").FirstOrDefault();
+            Users user = _context.Users.FromSql($"EXECUTE dbo.GetUserByEmailAndPassword @Email = {email}, @Password = {password}").FirstOrDefault();
             if (user == null)
                 return null;
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -51,7 +51,7 @@ namespace CAS
             return user;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<Users> GetAll()
         {
             
             return _context.Users.ToList().Select(x =>
@@ -61,7 +61,7 @@ namespace CAS
             });
         }
 
-        public User GetById(int id)
+        public Users GetById(int id)
         {
             var user = _context.Users.Find(id);
 

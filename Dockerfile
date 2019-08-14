@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:sdk AS build-env
+FROM mcr.microsoft.com/dotnet/core/runtime:2.2
 WORKDIR /app
 
 # Setup NodeJs

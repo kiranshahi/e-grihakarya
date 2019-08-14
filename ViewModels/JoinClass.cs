@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CAS
+namespace egrihakarya
 {
     [NotMapped]
     public class JoinClass
