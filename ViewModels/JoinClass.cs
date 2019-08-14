@@ -1,5 +1,8 @@
-﻿namespace CAS
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CAS
 {
+    [NotMapped]
     public class JoinClass
     {
         public int Id { get; set; }
