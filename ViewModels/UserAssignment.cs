@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace CAS
+using System.ComponentModel.DataAnnotations.Schema;
+namespace egrihakarya
 {
     [NotMapped]
     public class UserAssignment

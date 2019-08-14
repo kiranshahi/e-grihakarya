@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace CAS
+namespace egrihakarya
 {
     [Route("api/[controller]")]
     [ApiController]
     public class JoinController : ControllerBase
     {
-        private readonly CASContext _context;
-        public JoinController(CASContext context)
+        private readonly ClassroomContext _context;
+        public JoinController(ClassroomContext context)
         {
             _context = context;
         }

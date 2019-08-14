@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CAS.API
+namespace egrihakarya
 {
     [Route("api/[controller]")]
     [ApiController]

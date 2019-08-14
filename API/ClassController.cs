@@ -4,29 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CAS
+namespace egrihakarya
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ClassController : ControllerBase
     {
-        private readonly CASContext _context;
+        private readonly ClassroomContext _context;
 
-        public ClassController(CASContext context)
+        public ClassController(ClassroomContext context)
         {
             _context = context;
         }
 
         // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CASClass>>> GetClasses(string Role, int UserId)
+        public async Task<ActionResult<IEnumerable<UserClasses>>> GetClasses(string Role, int UserId)
         {
-            return await _context.Classes.FromSql($"EXECUTE dbo.GetAllClass @Role = {Role}, @Id = {UserId}").ToListAsync();
+            var classesList = from c in _context.UserClasses select c;
+            switch (Role.ToLower())
+            {
+                case "admin":
+                    classesList = classesList.Include("Uclass")
+                        .SelectMany(uc => uc.Uclass.Where(c => c.AddedBy == UserId))
+                    break;
+                case "teacher":
+                    classesList = classesList.OrderBy(c => c.AddedOn);
+                    break;
+                default:
+                    classesList = classesList.OrderBy(c => c.AddedOn);
+                    break;
+            }
+            return Ok(await classesList.AsNoTracking().ToListAsync());
         }
 
         // GET: api/Class/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CASClass>> GetClassDetail(int id)
+        public async Task<ActionResult<Classes>> GetClassDetail(int id)
         {
             var classDetail = await _context.Classes.FindAsync(id);
             if (classDetail == null)
@@ -38,7 +52,7 @@ namespace CAS
 
         // PUT: api/Class/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClass(int id, CASClass classDetail)
+        public async Task<IActionResult> PutClass(int id, Classes classDetail)
         {
             if (id != classDetail.Id)
             {
@@ -68,14 +82,14 @@ namespace CAS
 
         // POST: api/Class
         [HttpPost]
-        public int PostClassDetail(CASClass classDetail)
+        public int PostClassDetail(Classes classDetail)
         {
             return _context.Database.ExecuteSqlCommand($"dbo.AddClass @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
         }
 
         // DELETE: api/Class/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<CASClass>> DeleteClassDetail(int id)
+        public async Task<ActionResult<Classes>> DeleteClassDetail(int id)
         {
             var classDetail = await _context.Classes.FindAsync(id);
             if (classDetail == null)

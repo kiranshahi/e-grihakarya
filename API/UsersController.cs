@@ -4,32 +4,31 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace CAS
+namespace egrihakarya
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
-        private readonly CASContext _context;
-        public UsersController(IUserService userService, CASContext context)
+        private readonly ClassroomContext _context;
+        public UsersController(IUserService userService, ClassroomContext context)
         {
             _userService = userService;
             _context = context;
         }
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]User userParam)
+        public IActionResult Authenticate([FromBody]Users userParam)
         {
             var user = _userService.Authenticate(userParam.Email, userParam.Password);
             if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
-
+                return BadRequest("Username or password is incorrect");
             return Ok(user);
         }
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<User>> Register(User user)
+        public async Task<ActionResult<Users>> Register(Users user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -62,7 +61,7 @@ namespace CAS
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, User user)
+        public async Task<IActionResult> UpdateUser(int id, Users user)
         {
             if (id != user.Id)
             {
@@ -86,12 +85,12 @@ namespace CAS
             }
             return NoContent();
         }
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<Users>> DeleteUser(int id)
         {
             var userDetails = await _context.Users.FindAsync(id);
             if (userDetails == null)
             {
-                return NotFound();
+                return NotFound("User not found.");
             }
             _context.Users.Remove(userDetails);
             await _context.SaveChangesAsync();

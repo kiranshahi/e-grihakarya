@@ -4,29 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CAS
+namespace egrihakarya
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AssignmentController : ControllerBase
     {
-        private readonly CASContext _context;
+        private readonly ClassroomContext _context;
 
-        public AssignmentController(CASContext context)
+        public AssignmentController(ClassroomContext context)
         {
             _context = context;
         }
 
         // GET: api/Assignment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignment(int classId)
+        public async Task<ActionResult<IEnumerable<Assignments>>> GetAssignment(int classId)
         {
             return await _context.Assignments.FromSql($"EXECUTE dbo.GetAssignmentByClassID @ClassId = {classId}").ToListAsync();
         }
 
         // GET: api/Assignment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Assignment>> GetAssignmentDetail(int id)
+        public async Task<ActionResult<Assignments>> GetAssignmentDetail(int id)
         {
             var assignmentDetail = await _context.Assignments.FindAsync(id);
             if (assignmentDetail == null)
@@ -38,9 +38,9 @@ namespace CAS
 
         // PUT: api/Assignment/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAssignment(int id, Assignment assignmentDetails)
+        public async Task<IActionResult> PutAssignment(int id, Assignments assignmentDetails)
         {
-            if (id != assignmentDetails.ID)
+            if (id != assignmentDetails.Id)
             {
                 return BadRequest();
             }
@@ -67,14 +67,14 @@ namespace CAS
 
         // POST: api/Assignment
         [HttpPost]
-        public int PostAssignmentDetail(Assignment assignmentDetail)
+        public int PostAssignmentDetail(Assignments assignmentDetail)
         {
-            return _context.Database.ExecuteSqlCommand($"dbo.AddAssignment @AssinmentID = {assignmentDetail.ID}, @title = {assignmentDetail.Title}, @instructions = {assignmentDetail.Instructions}, @attachment = {assignmentDetail.Attachment}, @duedate ={assignmentDetail.DueDate}, @classid ={assignmentDetail.ClassID}");
+            return _context.Database.ExecuteSqlCommand($"dbo.AddAssignment @AssinmentID = {assignmentDetail.Id}, @title = {assignmentDetail.Title}, @instructions = {assignmentDetail.Instructions}, @attachment = {assignmentDetail.Attachment}, @duedate ={assignmentDetail.DueDate}, @classid ={assignmentDetail.ClassId}");
         }
 
         // DELETE: api/Assignment/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Assignment>> DeleteAssignmentDetail(int id)
+        public async Task<ActionResult<Assignments>> DeleteAssignmentDetail(int id)
         {
             var assignmentDetail = await _context.Assignments.FindAsync(id);
             if (assignmentDetail == null)
@@ -88,7 +88,7 @@ namespace CAS
 
         private bool AssignmentDetailExists(int id)
         {
-            return _context.Assignments.Any(e => e.ID == id);
+            return _context.Assignments.Any(e => e.Id == id);
         }
     }
 }

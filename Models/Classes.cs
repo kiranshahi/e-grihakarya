@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace egrihakarya
 {
-    [NotMapped]
-    public class ClassView
+    public partial class Classes
     {
         public int Id { get; set; }
         public string ClassName { get; set; }
         public string Section { get; set; }
         public string Subject { get; set; }
         public string Room { get; set; }
-        public string Teacher { get; set; }
+        public DateTime AddedOn { get; set; }
+        public int? AddedBy { get; set; }
+        public string SubjectCode { get; set; }
     }
 }

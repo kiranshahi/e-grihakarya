@@ -6,24 +6,24 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace CAS.API
+namespace egrihakarya
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UserAssignController : ControllerBase
     {
-        private readonly CASContext _context;
-        public UserAssignController(CASContext context)
+        private readonly ClassroomContext _context;
+        public UserAssignController(ClassroomContext context)
         {
             _context = context;
         }
         [HttpGet("getuserasign")]
-        public async Task<ActionResult<IEnumerable<Assignment>>> GetUserAssign(int assignId)
+        public async Task<ActionResult<IEnumerable<Assignments>>> GetUserAssign(int assignId)
         {
             return await _context.Assignments.FromSql($"EXECUTE dbo.GetUserAssignment @AssignmentID = {assignId}").ToListAsync();
         }
         [HttpGet("GetAssignmentById")]
-        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignmentByUserAndAssID(int userID, int assignmentID)
+        public async Task<ActionResult<IEnumerable<Assignments>>> GetAssignmentByUserAndAssID(int userID, int assignmentID)
         {
             return await _context.Assignments.FromSql($"EXECUTE dbo.GetAssignmentByUserAndAssID @UserID = {userID}, @AssignmentID = {assignmentID}").ToListAsync();
         }

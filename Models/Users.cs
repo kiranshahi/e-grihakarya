@@ -1,20 +1,18 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
-namespace CAS
+namespace egrihakarya
 {
-    public class User
+    public partial class Users
     {
-        [Key]
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
         public string Token { get; set; }
-        public List<UserClass> UserClass { get; set; }
-        public List<Comments> Comments { get; set; }
-        public List<Assignment> Assignments { get; set; }
+        public ICollection<UserClasses> Classes { get; set; }
     }
 }
