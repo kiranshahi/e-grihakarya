@@ -1,5 +1,8 @@
-﻿namespace egrihakarya
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace egrihakarya
 {
+    [NotMapped]
     public class JoinClass
     {
         public int Id { get; set; }

@@ -1,5 +1,7 @@
-﻿namespace egrihakarya
+using System.ComponentModel.DataAnnotations.Schema;
+namespace egrihakarya
 {
+    [NotMapped]
     public class UserAssignment
     {
         public int ID { get; set; }
