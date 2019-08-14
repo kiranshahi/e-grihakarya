@@ -31,6 +31,7 @@ namespace egrihakarya.Migrations
                         		,[SubmittedOn] = GETDATE()
                         	WHERE UserID = @UserID AND AssignmentID = @AssignmentID
                         END";
+            migrationBuilder.Sql(sp);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

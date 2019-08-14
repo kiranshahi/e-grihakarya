@@ -24,16 +24,16 @@ namespace egrihakarya
             var classesList = from c in _context.UserClasses select c;
             switch (Role.ToLower())
             {
-                case "admin":
-                    classesList = classesList.Include("Uclass")
-                        .SelectMany(uc => uc.Uclass.Where(c => c.AddedBy == UserId))
-                    break;
-                case "teacher":
-                    classesList = classesList.OrderBy(c => c.AddedOn);
-                    break;
-                default:
-                    classesList = classesList.OrderBy(c => c.AddedOn);
-                    break;
+                //case "admin":
+                //    classesList = classesList.Include("Uclass")
+                //        .SelectMany(uc => uc.Uclass.Where(c => c.AddedBy == UserId))
+                //    break;
+                //case "teacher":
+                //    classesList = classesList.OrderBy(c => c.AddedOn);
+                //    break;
+                //default:
+                //    classesList = classesList.OrderBy(c => c.AddedOn);
+                //    break;
             }
             return Ok(await classesList.AsNoTracking().ToListAsync());
         }
