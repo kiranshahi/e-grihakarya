@@ -22,11 +22,11 @@ namespace egrihakarya
         public virtual DbSet<UserClasses> UserClasses { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
-        public DbSet<ClassView> ClassViews { get; set; }
-        public DbSet<CommentView> CommentViews { get; set; }
-        public DbSet<JoinClass> JoinClasses { get; set; }
-        public DbSet<UserAssignment> UsersAssignments { get; set; }
-        public DbSet<UserAssignmentAdmin> UserAssignmentAdmins { get; set; }
+        public DbQuery<ClassView> ClassViews { get; set; }
+        public DbQuery<CommentView> CommentViews { get; set; }
+        public DbQuery<JoinClass> JoinClasses { get; set; }
+        public DbQuery<UserAssignment> UsersAssignments { get; set; }
+        public DbQuery<UserAssignmentAdmin> UserAssignmentAdmins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
