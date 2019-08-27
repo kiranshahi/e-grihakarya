@@ -19,9 +19,9 @@ namespace egrihakarya
 
         // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Classes>>> GetClasses(string Role, int UserId)
+        public async Task<ActionResult<IEnumerable<ClassView>>> GetClasses(string Role, int UserId)
         {
-            return await _context.Classes.FromSql($"EXECUTE dbo.GetAllClass @Role = {Role}, @Id = {UserId}").ToListAsync();
+            return await _context.ClassViews.FromSql($"EXECUTE dbo.GetAllClass @Role = {Role}, @Id = {UserId}").ToListAsync();
         }
 
         // GET: api/Class/5
