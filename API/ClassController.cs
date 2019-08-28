@@ -28,7 +28,7 @@ namespace egrihakarya
         [HttpGet("{id}")]
         public async Task<ActionResult<Classes>> GetClassDetail(int id)
         {
-            var classDetail = await _context.Classes.FindAsync(id);
+            var classDetail = await _context.Classes.FromSql($"EXECUTE [dbo].[GetClassByID] @ClassID = {id}").FirstAsync();
             if (classDetail == null)
             {
                 return NotFound();
