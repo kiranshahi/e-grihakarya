@@ -94,7 +94,7 @@ export class AssignmentComponent implements OnInit {
     let cmt: Comments = {
       UserId: this.currentUser.id,
       AssignmentID: this.assignId,
-      Comment: this.comment.nativeElement.value
+      Comments: this.comment.nativeElement.value
     } as Comments;
     this.commentService.addComment(cmt)
       .subscribe();

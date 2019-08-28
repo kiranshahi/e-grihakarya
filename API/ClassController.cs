@@ -21,7 +21,7 @@ namespace egrihakarya
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClassView>>> GetClasses(string Role, int UserId)
         {
-            return await _context.ClassViews.FromSql($"EXECUTE dbo.GetAllClass @Role = {Role}, @Id = {UserId}").ToListAsync();
+            return await _context.ClassViews.FromSql($"EXECUTE [dbo].[GetAllClass] @Role = {Role}, @Id = {UserId}").ToListAsync();
         }
 
         // GET: api/Class/5
@@ -70,7 +70,7 @@ namespace egrihakarya
         [HttpPost]
         public int PostClassDetail(Classes classDetail)
         {
-            return _context.Database.ExecuteSqlCommand($"dbo.AddClass @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
+            return _context.Database.ExecuteSqlCommand($"[dbo].[AddClass] @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
         }
 
         // DELETE: api/Class/5

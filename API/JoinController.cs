@@ -16,7 +16,7 @@ namespace egrihakarya
         [HttpPost]
         public void Post(JoinClass joinClass)
         {
-            _context.Database.ExecuteSqlCommand($"dbo.JoinClass @UserID = {joinClass.UserID}, @ClassID = { joinClass.ClassID }");
+            _context.Database.ExecuteSqlCommand($"[dbo].[JoinClass] @UserID = {joinClass.UserID}, @ClassID = { joinClass.ClassID }");
         }
     }
 }
