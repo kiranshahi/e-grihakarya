@@ -17,17 +17,17 @@ namespace egrihakarya
         [HttpGet("getuserasign")]
         public async Task<ActionResult<IEnumerable<UserAssignment>>> GetUserAssign(int assignId)
         {
-            return await _context.UsersAssignments.FromSql($"EXECUTE [dbo].[GetUserAssignment] @AssignmentID = {assignId}").ToListAsync();
+            return await _context.UsersAssignments.FromSqlRaw($"EXECUTE [dbo].[GetUserAssignment] @AssignmentID = {assignId}").ToListAsync();
         }
         [HttpGet("GetAssignmentById")]
         public async Task<ActionResult<IEnumerable<UserAssignment>>> GetAssignmentByUserAndAssID(int userID, int assignmentID)
         {
-            return await _context.UsersAssignments.FromSql($"EXECUTE [dbo].[GetAssignmentByUserAndAssID] @UserID = {userID}, @AssignmentID = {assignmentID}").ToListAsync();
+            return await _context.UsersAssignments.FromSqlRaw($"EXECUTE [dbo].[GetAssignmentByUserAndAssID] @UserID = {userID}, @AssignmentID = {assignmentID}").ToListAsync();
         }
         [HttpPost]
         public int AddUserAssignment(UserAssignmentAdmin userAss)
         {
-            return _context.Database.ExecuteSqlCommand($"[dbo].[AddUpdateUserAssignment] @UserID = {userAss.UserID}, @AssignmentID = {userAss.AssignmentID}, @Assignment = {userAss.Assignment}");
+            return _context.Database.ExecuteSqlRaw($"[dbo].[AddUpdateUserAssignment] @UserID = {userAss.UserID}, @AssignmentID = {userAss.AssignmentID}, @Assignment = {userAss.Assignment}");
         }
         
     }

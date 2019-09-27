@@ -21,7 +21,7 @@ namespace egrihakarya
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Assignments>>> GetAssignment(int classId)
         {
-            return await _context.Assignments.FromSql($"EXECUTE [dbo].[GetAssignmentByClassID] @ClassId = {classId}").ToListAsync();
+            return await _context.Assignments.FromSqlRaw($"EXECUTE [dbo].[GetAssignmentByClassID] @ClassId = {classId}").ToListAsync();
         }
 
         // GET: api/Assignment/5
@@ -69,7 +69,7 @@ namespace egrihakarya
         [HttpPost]
         public int PostAssignmentDetail(Assignments assignmentDetail)
         {
-            return _context.Database.ExecuteSqlCommand($"[dbo].[AddAssignment] @AssinmentID = {assignmentDetail.Id}, @title = {assignmentDetail.Title}, @instructions = {assignmentDetail.Instructions}, @attachment = {assignmentDetail.Attachment}, @duedate ={assignmentDetail.DueDate}, @classid ={assignmentDetail.ClassId}");
+            return _context.Database.ExecuteSqlRaw($"[dbo].[AddAssignment] @AssinmentID = {assignmentDetail.Id}, @title = {assignmentDetail.Title}, @instructions = {assignmentDetail.Instructions}, @attachment = {assignmentDetail.Attachment}, @duedate ={assignmentDetail.DueDate}, @classid ={assignmentDetail.ClassId}");
         }
 
         // DELETE: api/Assignment/5
