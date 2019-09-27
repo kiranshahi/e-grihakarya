@@ -6,7 +6,6 @@ import { FormControl } from '@angular/forms';
 import { CASClass } from '../_models/casclass';
 import { User } from '../_models/user';
 import { formatDate } from '@angular/common';
-import { ModalDirective } from 'angular-bootstrap-md';
 import { Join } from '../_models/join';
 
 @Component({
@@ -21,8 +20,8 @@ export class MenuComponent implements OnInit {
     section = new FormControl('');
     subject = new FormControl('');
     room = new FormControl('');
-    @ViewChild('createModal', { static: true }) createModal: ModalDirective;
-    @ViewChild('joinModal', { static: true }) joinModal: ModalDirective;
+    @ViewChild('createModal', { static: true }) createModal: ElementRef;
+    @ViewChild('joinModal', { static: true }) joinModal: ElementRef;
 
     constructor(
         private router: Router,
@@ -48,7 +47,7 @@ export class MenuComponent implements OnInit {
         } as Join;
         this.classService.joinClass(jClass)
             .subscribe();
-        this.joinModal.hide();
+        //this.joinModal.hide();
     }
 
     onCreate() {
@@ -63,6 +62,6 @@ export class MenuComponent implements OnInit {
         } as unknown as CASClass;
         this.classService.addClass(newClass)
             .subscribe();
-        this.createModal.hide();
+        //this.createModal.hide();
     }
 }

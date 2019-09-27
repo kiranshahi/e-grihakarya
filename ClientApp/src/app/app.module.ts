@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -38,7 +36,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
         NgbModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule,
-        MDBBootstrapModule.forRoot(),
         PdfViewerModule
     ],
     declarations: [

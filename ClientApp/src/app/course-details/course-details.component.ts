@@ -6,7 +6,6 @@ import { User } from '../_models/user';
 import { AuthenticationService } from '../_services';
 import { Assignment } from '../_models/assignment';
 import { AssignmentService } from '../_services/assignment.service';
-import { ModalDirective } from 'angular-bootstrap-md';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -22,7 +21,7 @@ export class CourseDetailsComponent implements OnInit {
     public response: { dbPath: '' };
     public filename: string;
     public asList: Assignment[] = [];
-    @ViewChild('assignmentModal', { static: true }) createModal: ModalDirective;
+    @ViewChild('assignmentModal', { static: true }) createModal: ElementRef;
 
     title = new FormControl('');
     instruction = new FormControl('');
@@ -74,7 +73,7 @@ export class CourseDetailsComponent implements OnInit {
         } as Assignment;
         this.assignmentService.addAs(newAs)
             .subscribe();
-        this.createModal.hide();
+        //this.createModal.hide();
     }
 
     getAll() {

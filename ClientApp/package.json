@@ -28,7 +28,6 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.1",
     "@nguniversal/module-map-ngfactory-loader": "^9.0.0-next.2",
     "@types/chart.js": "^2.8.5",
-    "angular-bootstrap-md": "^7.5.3",
     "aspnet-prerendering": "^3.0.1",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",

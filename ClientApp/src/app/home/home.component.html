@@ -9,12 +9,12 @@
           {{class.teacher}}
         </h5>
       </div>
-      <mdb-card-body>
+      <div class="card">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button (click)="onSelect(class)" [attr.data-id]="class.id" mdbBtn color="primary" mdbWavesEffect>View Class</button>
-          <button (click)="onDelete(class)" *ngIf="currentUser.role == 'Teacher' || currentUser.role == 'Admin'" type="button" class="btn btn-danger ml-1" size="sm" mdbBtn><mdb-icon far icon="trash-alt"></mdb-icon></button>
+          <button (click)="onSelect(class)" [attr.data-id]="class.id" color="primary">View Class</button>
+          <button (click)="onDelete(class)" *ngIf="currentUser.role == 'Teacher' || currentUser.role == 'Admin'" type="button" class="btn btn-danger ml-1" size="sm"><span far icon="trash-alt"></span></button>
         </div>
-      </mdb-card-body>
+      </div>
     </div>
   </div>
 </div>

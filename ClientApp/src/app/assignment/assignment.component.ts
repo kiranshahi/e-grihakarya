@@ -9,7 +9,6 @@ import { UserAssignmentAdmin } from '../_models/UserAssignmentAdmin';
 import { CommentService } from '../_services/comment.service';
 import { Comments } from '../_models/Comments';
 import { CommentView } from '../_models/CommentView';
-import { ModalDirective } from 'angular-bootstrap-md';
 
 @Component({
     selector: 'app-assignment',
@@ -26,7 +25,7 @@ export class AssignmentComponent implements OnInit {
     public response: { dbPath: '' };
     public filename: string;
     public pdfSrc: string;
-    @ViewChild('pdfModal', { static: true }) pdfModal: ModalDirective;
+    @ViewChild('pdfModal', { static: true }) pdfModal: ElementRef;
     @ViewChild('comment', { static: true }) comment: ElementRef;
     constructor(
         private route: ActivatedRoute,
@@ -99,6 +98,6 @@ export class AssignmentComponent implements OnInit {
     }
     pdfViwer(el) {
         this.pdfSrc = `/uploads/files/${el.getAttribute('data-file')}`;
-        this.pdfModal.show();
+        //this.pdfModal.show();
     }
 }

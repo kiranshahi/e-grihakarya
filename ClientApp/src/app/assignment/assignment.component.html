@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5 class="card-title">{{assignment.title}}</h5>
     <p class="card-text">{{assignment.instructions}}</p>
-    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" mdbWavesEffect #pdfEl [attr.data-file]="assignment.attachment.split('\\')[3]">{{assignment.attachment.split('\\')[3]}}</button>
+    <button type="button" color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" #pdfEl [attr.data-file]="assignment.attachment.split('\\')[3]">{{assignment.attachment.split('\\')[3]}}</button>
     <footer class="blockquote-footer">Added On: <cite title="Source Title">{{assignment.addedOn}}</cite></footer>
     <footer class="blockquote-footer">Due Date: <cite title="Source Title">{{assignment.dueDate}}</cite></footer>
   </div>
@@ -14,7 +14,7 @@
         <div class="card-body">
           <h5 class="card-title">Your Work</h5>
           <p class="card-text">Mark as done or attach work to turn in</p>
-          <button *ngIf="uass.isSubmitted" id="fileName" type="button" mdbBtn color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" mdbWavesEffect #pdfEl [attr.data-file]="uass.assignment.split('\\')[3]">{{uass.assignment.split('\\')[3]}}</button>
+          <button *ngIf="uass.isSubmitted" id="fileName" type="button" color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" #pdfEl [attr.data-file]="uass.assignment.split('\\')[3]">{{uass.assignment.split('\\')[3]}}</button>
           <label *ngIf="!uass.isSubmitted" id="fileName" data-file=""></label>
           <app-file-uploader (onUploadFinished)="uploadFinished($event)"></app-file-uploader>
           <button *ngIf="uass.isSubmitted" type="button" class="btn btn-primary" (click)="onSubmitAssign()">Resubmit Assignment</button>
@@ -26,7 +26,7 @@
       <div *ngFor="let ass of adminAsList" class="card mt-1">
         <div class="card-body">
           <p class="card-text">{{ass.name}}</p>
-          <button *ngIf="ass.isSubmitted" id="fileName" type="button" mdbBtn color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" mdbWavesEffect #pdfEl [attr.data-file]="ass.assignment.split('\\')[3]">{{ass.assignment.split('\\')[3]}}</button>
+          <button *ngIf="ass.isSubmitted" id="fileName" type="button" color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" #pdfEl [attr.data-file]="ass.assignment.split('\\')[3]">{{ass.assignment.split('\\')[3]}}</button>
           <p class="card-text" *ngIf="ass.isSubmitted"><small class="text-muted">Submitted on {{ass.SubmittedOn}}</small></p>
           <p class="card-text" *ngIf="!ass.isSubmitted"><small class="text-muted">Assignment not submitted yet.</small></p>
         </div>
@@ -44,7 +44,7 @@
     <div class="card mt-1">
       <div class="card-body">
         <div class="md-form">
-          <input type="text" id="comment" class="form-control mb-4" mdbInput #comment />
+          <input type="text" id="comment" class="form-control mb-4" #comment />
           <label for="comment">Comment</label>
         </div>
         <button type="button" class="btn btn-primary" (click)="addComment()">Comment</button>
@@ -60,7 +60,7 @@
     </div>
   </div>
 </div>
-<div mdbModal #pdfModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myPdfModal" aria-hidden="true">
+<div #pdfModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myPdfModal" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -77,8 +77,8 @@
                     style="display: block;"></pdf-viewer>
       </div>
       <div class="modal-footer">
-        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="pdfModal.hide()" mdbWavesEffect>Close</button>
-        <a href="{{pdfSrc}}" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect download>Download</a>
+        <button type="button" color="secondary" class="waves-light" aria-label="Close" (click)="pdfModal.hide()">Close</button>
+        <a href="{{pdfSrc}}" color="primary" class="relative waves-light" download>Download</a>
       </div>
     </div>
   </div>
