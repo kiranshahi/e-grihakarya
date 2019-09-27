@@ -26,9 +26,9 @@ namespace egrihakarya
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddDbContext<ClassroomContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevCon")));
-            
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -61,8 +61,9 @@ namespace egrihakarya
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new Info { Title = "Classroom API", Version = "v1"});
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Classroom API", Version = "v1" });
             });
         }
 
@@ -77,17 +78,15 @@ namespace egrihakarya
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => 
+                app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Classroom API V1");
                 });
             }
             app.UseAuthentication();
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
             });
             app.UseSpa(spa =>
             {
