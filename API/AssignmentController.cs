@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace egrihakarya
 {
@@ -26,6 +27,9 @@ namespace egrihakarya
 
         // GET: api/Assignment/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Assignments>> GetAssignmentDetail(int id)
         {
             var assignmentDetail = await _context.Assignments.FindAsync(id);
@@ -38,6 +42,10 @@ namespace egrihakarya
 
         // PUT: api/Assignment/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> PutAssignment(int id, Assignments assignmentDetails)
         {
             if (id != assignmentDetails.Id)
@@ -74,6 +82,9 @@ namespace egrihakarya
 
         // DELETE: api/Assignment/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Assignments>> DeleteAssignmentDetail(int id)
         {
             var assignmentDetail = await _context.Assignments.FindAsync(id);

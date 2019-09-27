@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace egrihakarya
 {
@@ -10,6 +11,10 @@ namespace egrihakarya
     public class UploadController : ControllerBase
     {
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public IActionResult Upload()
         {
             try

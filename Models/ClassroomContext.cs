@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -22,11 +23,16 @@ namespace egrihakarya
         public virtual DbSet<UserClasses> UserClasses { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
-        public DbQuery<ClassView> ClassViews { get; set; }
-        public DbQuery<CommentView> CommentViews { get; set; }
-        public DbQuery<JoinClass> JoinClasses { get; set; }
-        public DbQuery<UserAssignment> UsersAssignments { get; set; }
-        public DbQuery<UserAssignmentAdmin> UserAssignmentAdmins { get; set; }
+        [NotMapped]
+        public DbSet<ClassView> ClassViews { get; set; }
+        [NotMapped]
+        public DbSet<CommentView> CommentViews { get; set; }
+        [NotMapped]
+        public DbSet<JoinClass> JoinClasses { get; set; }
+        [NotMapped]
+        public DbSet<UserAssignment> UsersAssignments { get; set; }
+        [NotMapped]
+        public DbSet<UserAssignmentAdmin> UserAssignmentAdmins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
