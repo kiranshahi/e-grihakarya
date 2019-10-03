@@ -28,7 +28,7 @@ namespace egrihakarya
         }
         public Users Authenticate(string email, string password)
         {
-            Users user = _context.Users.FromSqlRaw($"EXECUTE dbo.GetUserByEmailAndPassword @Email = {email}, @Password = {password}").FirstOrDefault();
+            Users user = _context.Users.FromSqlRaw("EXECUTE dbo.GetUserByEmailAndPassword @Email = {0}, @Password = {1}", email, password).ToList().FirstOrDefault();
             if (user == null)
                 return null;
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -53,7 +53,7 @@ namespace egrihakarya
 
         public IEnumerable<Users> GetAll()
         {
-            
+
             return _context.Users.ToList().Select(x =>
             {
                 x.Password = null;
