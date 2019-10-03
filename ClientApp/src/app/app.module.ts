@@ -20,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
@@ -33,7 +32,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
         BrowserAnimationsModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        NgbModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule,
         PdfViewerModule
