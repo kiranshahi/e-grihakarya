@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">{{assignment.title}}</h5>
-    <p class="card-text">{{assignment.instructions}}</p>
-    <button type="button" color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" #pdfEl [attr.data-file]="assignment.attachment.split('\\')[3]">{{assignment.attachment.split('\\')[3]}}</button>
-    <footer class="blockquote-footer">Added On: <cite title="Source Title">{{assignment.addedOn}}</cite></footer>
+    <h5 class="card-title">{{assignment.Title}}</h5>
+    <p class="card-text">{{assignment.Instructions}}</p>
+    <button type="button" color="primary" class="relative waves-light" (click)="pdfViwer(pdfEl)" #pdfEl [attr.data-file]="assignment.Attachment.split('\\')[3]">{{assignment.Attachment.split('\\')[3]}}</button>
+    <footer class="blockquote-footer">Added On: <cite title="Source Title">{{assignment.AddedOn}}</cite></footer>
     <footer class="blockquote-footer">Due Date: <cite title="Source Title">{{assignment.dueDate}}</cite></footer>
   </div>
 </div>
