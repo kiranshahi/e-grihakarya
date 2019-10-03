@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace egrihakarya
+﻿namespace egrihakarya
 {
     public partial class Users
     {

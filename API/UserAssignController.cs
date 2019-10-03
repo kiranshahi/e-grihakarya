@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace egrihakarya
 {
@@ -29,6 +29,6 @@ namespace egrihakarya
         {
             return _context.Database.ExecuteSqlRaw($"[dbo].[AddUpdateUserAssignment] @UserID = {userAss.UserID}, @AssignmentID = {userAss.AssignmentID}, @Assignment = {userAss.Assignment}");
         }
-        
+
     }
 }
