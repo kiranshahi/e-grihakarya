@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace egrihakarya
+﻿namespace egrihakarya
 {
     public partial class Assignments
     {
@@ -13,7 +10,5 @@ namespace egrihakarya
         public int? CasclassId { get; set; }
         public int ClassId { get; set; }
         public string AddedOn { get; set; }
-        //public User CreateBy { get; set; }
-        //public List<Comments> Comments { get; set; }
     }
 }

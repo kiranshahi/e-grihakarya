@@ -19,30 +19,16 @@ namespace egrihakarya
 
         // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserClasses>>> GetClasses(string Role, int UserId)
+        public async Task<ActionResult<IEnumerable<ClassView>>> GetClasses(string Role, int UserId)
         {
-            var classesList = from c in _context.UserClasses select c;
-            switch (Role.ToLower())
-            {
-                //case "admin":
-                //    classesList = classesList.Include("Uclass")
-                //        .SelectMany(uc => uc.Uclass.Where(c => c.AddedBy == UserId))
-                //    break;
-                //case "teacher":
-                //    classesList = classesList.OrderBy(c => c.AddedOn);
-                //    break;
-                //default:
-                //    classesList = classesList.OrderBy(c => c.AddedOn);
-                //    break;
-            }
-            return Ok(await classesList.AsNoTracking().ToListAsync());
+            return await _context.ClassViews.FromSql($"EXECUTE [dbo].[GetAllClass] @Role = {Role}, @Id = {UserId}").ToListAsync();
         }
 
         // GET: api/Class/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Classes>> GetClassDetail(int id)
         {
-            var classDetail = await _context.Classes.FindAsync(id);
+            var classDetail = await _context.Classes.FromSql($"EXECUTE [dbo].[GetClassByID] @ClassID = {id}").FirstAsync();
             if (classDetail == null)
             {
                 return NotFound();
@@ -84,7 +70,7 @@ namespace egrihakarya
         [HttpPost]
         public int PostClassDetail(Classes classDetail)
         {
-            return _context.Database.ExecuteSqlCommand($"dbo.AddClass @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
+            return _context.Database.ExecuteSqlCommand($"[dbo].[AddClass] @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
         }
 
         // DELETE: api/Class/5
