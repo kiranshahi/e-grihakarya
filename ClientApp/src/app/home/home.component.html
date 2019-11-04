@@ -12,8 +12,17 @@
       <mdb-card-body>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button (click)="onSelect(class)" [attr.data-id]="class.id" mdbBtn color="primary" mdbWavesEffect>View Class</button>
-          <button (click)="onEdit(class)" *ngIf="currentUser.role == 'Teacher'" type="button" class="btn btn-danger ml-1" size="sm" mdbBtn><mdb-icon fas icon="pencil-alt"></mdb-icon></button>
-          <button (click)="onDelete(class)" *ngIf="currentUser.role == 'Teacher' || currentUser.role == 'Admin'" type="button" class="btn btn-danger ml-1" size="sm" mdbBtn><mdb-icon far icon="trash-alt"></mdb-icon></button>
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <div class="btn-group" mdbDropdown>
+              <button mdbDropdownToggle type="button" mdbBtn color="info" class="dropdown-toggle waves-light" mdbWavesEffect>
+                <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+              </button>
+              <div class="dropdown-menu dropdown-primary">
+                <a (click)="onEdit(class)" *ngIf="currentUser.role == 'Teacher'" type="button" class="dropdown-item" href="#"><mdb-icon fas icon="pencil-alt"></mdb-icon> Edit</a>
+                <a (click)="onDelete(class)" *ngIf="currentUser.role == 'Teacher' || currentUser.role == 'Admin'" class="dropdown-item" href="#"><mdb-icon far icon="trash-alt"></mdb-icon> Delete</a>
+              </div>
+            </div>
+          </div>
         </div>
       </mdb-card-body>
     </div>
