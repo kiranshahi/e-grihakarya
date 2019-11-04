@@ -30,7 +30,7 @@ namespace egrihakarya.Migrations
                         BEGIN
                         	SET NOCOUNT ON;
                         	DECLARE @SubjectCode NVARCHAR(50);
-                        	SELECT @SubjectCode = CONVERT(nvarchar(50), CONVERT(varbinary(max),CAST(GETDATE() AS timestamp)),1)  
+                        	SELECT @SubjectCode = SUBSTRING(CONVERT(varchar(255), NEWID()), 0, 7)
                         	INSERT INTO [dbo].[Classes]
                                    ([ClassName]
                                    ,[Section]
