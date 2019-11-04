@@ -24,7 +24,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { PdfViewerModule  } from 'ng2-pdf-viewer'; 
+import { PdfViewerModule  } from 'ng2-pdf-viewer';
+import { EditComponent } from './edit/edit.component'; 
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { PdfViewerModule  } from 'ng2-pdf-viewer';
     RegisterComponent,
     AssignmentComponent,
     CourseDetailsComponent,
-    FileUploaderComponent
+    FileUploaderComponent,
+    EditComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

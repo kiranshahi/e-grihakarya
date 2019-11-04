@@ -8,6 +8,7 @@ var auth_guard_1 = require("./_guards/auth.guard");
 var role_1 = require("./_models/role");
 var course_details_component_1 = require("./course-details/course-details.component");
 var assignment_component_1 = require("./assignment/assignment.component");
+var edit_component_1 = require("./edit/edit.component");
 var appRoutes = [
     {
         path: '',
@@ -23,6 +24,12 @@ var appRoutes = [
         component: register_component_1.RegisterComponent,
         canActivate: [auth_guard_1.AuthGuard],
         data: { roles: [role_1.Role.Admin] }
+    },
+    {
+        path: 'edit/:id',
+        component: edit_component_1.EditComponent,
+        canActivate: [auth_guard_1.AuthGuard],
+        data: { roles: [role_1.Role.Teacher] }
     },
     {
         path: 'course/:id',
