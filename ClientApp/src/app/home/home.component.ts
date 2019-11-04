@@ -8,7 +8,8 @@ import { ClassService } from '../_services/class.service';
 import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: './home.component.html'
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
     public currentUser: User;
