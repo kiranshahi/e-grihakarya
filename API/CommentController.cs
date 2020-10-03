@@ -17,6 +17,7 @@ namespace egrihakarya
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<CommentView>>> GetComments(int id)
         {
+
             return await _context.CommentViews.FromSqlRaw($"EXECUTE [dbo].[GetComment] @AssignmentID = {id}").ToListAsync();
         }
         [HttpPost]

@@ -32,6 +32,7 @@ namespace egrihakarya
         [ProducesDefaultResponseType]
         public async Task<ActionResult<Classes>> GetClassDetail(int id)
         {
+
             var classDetail = await _context.Classes.FromSqlRaw($"EXECUTE [dbo].[GetClassByID] @ClassID = {id}").FirstAsync();
             if (classDetail == null)
             {

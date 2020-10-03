@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace egrihakarya
 {
@@ -31,6 +32,11 @@ namespace egrihakarya
         public DbSet<UserAssignment> UsersAssignments { get; set; }
         [NotMapped]
         public DbSet<UserAssignmentAdmin> UserAssignmentAdmins { get; set; }
+        public DbQuery<ClassView> ClassViews { get; set; }
+        public DbQuery<CommentView> CommentViews { get; set; }
+        public DbQuery<JoinClass> JoinClasses { get; set; }
+        public DbQuery<UserAssignment> UsersAssignments { get; set; }
+        public DbQuery<UserAssignmentAdmin> UserAssignmentAdmins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
