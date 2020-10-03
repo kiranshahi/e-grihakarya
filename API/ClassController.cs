@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,18 @@ namespace egrihakarya
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClassView>>> GetClasses(string Role, int UserId)
         {
-            return await _context.ClassViews.FromSql($"EXECUTE [dbo].[GetAllClass] @Role = {Role}, @Id = {UserId}").ToListAsync();
+            return await _context.ClassViews.FromSqlRaw($"EXECUTE [dbo].[GetAllClass] @Role = {Role}, @Id = {UserId}").ToListAsync();
         }
 
         // GET: api/Class/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Classes>> GetClassDetail(int id)
         {
-            var classDetail = await _context.Classes.FromSql($"EXECUTE [dbo].[GetClassByID] @ClassID = {id}").FirstAsync();
+
+            var classDetail = await _context.Classes.FromSqlRaw($"EXECUTE [dbo].[GetClassByID] @ClassID = {id}").FirstAsync();
             if (classDetail == null)
             {
                 return NotFound();
@@ -38,6 +43,10 @@ namespace egrihakarya
 
         // PUT: api/Class/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> PutClass(int id, Classes classDetail)
         {
             if (id != classDetail.Id)
@@ -70,11 +79,14 @@ namespace egrihakarya
         [HttpPost]
         public int PostClassDetail(Classes classDetail)
         {
-            return _context.Database.ExecuteSqlCommand($"[dbo].[AddClass] @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
+            return _context.Database.ExecuteSqlRaw($"[dbo].[AddClass] @ClassName = {classDetail.ClassName}, @Section = { classDetail.Section }, @Subject = {classDetail.Subject}, @Room = {classDetail.Room}, @AddedBy={classDetail.AddedBy}");
         }
 
         // DELETE: api/Class/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Classes>> DeleteClassDetail(int id)
         {
             var classDetail = await _context.Classes.FindAsync(id);

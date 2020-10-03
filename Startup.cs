@@ -1,15 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using Microsoft.EntityFrameworkCore;
-using Swashbuckle.AspNetCore.Swagger;
+using System.Text;
 
 namespace egrihakarya
 {
@@ -26,9 +23,9 @@ namespace egrihakarya
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<ClassroomContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevCon")));
-            
+            services.AddControllers();
+            string conString = Configuration.GetConnectionString("DevCon");
+            services.AddDbContext<ClassroomContext>(opt => opt.UseSqlServer(conString));
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -60,34 +57,22 @@ namespace egrihakarya
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new Info { Title = "Classroom API", Version = "v1"});
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseSpaStaticFiles();
             app.UseHttpsRedirection();
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => 
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Classroom API V1");
-                });
-            }
+            app.UseDeveloperExceptionPage();
+
             app.UseAuthentication();
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
             });
             app.UseSpa(spa =>
             {

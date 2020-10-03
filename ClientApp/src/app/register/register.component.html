@@ -8,7 +8,7 @@
             <input id="firstName" type="text" class="form-control" formControlName="firstName" mdbInput />
             <label for="firstName">First Name</label>
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-              <mdb-error *ngIf="f.firstName.errors.required">E-mail is required.</mdb-error>
+              <div class="invalid-feedback" *ngIf="f.firstName.errors.required">E-mail is required.</div>
             </div>
           </div>
         </div>

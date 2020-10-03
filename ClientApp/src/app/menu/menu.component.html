@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item dropdown btn-group" dropdown>
-          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light caret-off" mdbWavesEffects>
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light caret-off">
             <i class="fas fa-plus"></i>
           </a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
-            <a *ngIf="currentUser.role == 'Student'|| currentUser.role == 'Parent'" class="dropdown-item waves-light" href="#" mdbWavesEffect (click)="joinModal.show();">Join class</a>
-            <a *ngIf="currentUser.role == 'Admin'|| currentUser.role == 'Teacher'" class="dropdown-item waves-light" href="#" mdbWavesEffect (click)="createModal.show()">Create class</a>
-            <a *ngIf="currentUser.role == 'Admin'" class="dropdown-item waves-light" href="/register" mdbWavesEffect>Add User</a>
+            <a *ngIf="currentUser.role == 'Student'|| currentUser.role == 'Parent'" class="dropdown-item waves-light" href="#" (click)="joinModal.show();">Join class</a>
+            <a *ngIf="currentUser.role == 'Admin'|| currentUser.role == 'Teacher'" class="dropdown-item waves-light" href="#" (click)="createModal.show()">Create class</a>
+            <a *ngIf="currentUser.role == 'Admin'" class="dropdown-item waves-light" href="/register">Add User</a>
           </div>
         </li>
         <li class="nav-item avatar dropdown" dropdown>
@@ -22,14 +22,14 @@
             <img src="/user.jpg" class="img-fluid rounded-circle z-depth-0" style="height:30px;">
           </a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="logout()">Logout</a>
+            <a class="dropdown-item waves-light" href="#" (click)="logout()">Logout</a>
           </div>
         </li>
       </ul>
     </div>
   </nav>
 </header>
-<div mdbModal #joinModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog" aria-hidden="true">
+<div #joinModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -40,19 +40,19 @@
       <div class="modal-body mx-3">
         Ask your teacher for the class code, then enter it here.
         <div class="md-form mb-5">
-          <input type="text" class="form-control validate" mdbInput mdbValidate id="classCode" [formControl]="classCode">
+          <input type="text" class="form-control validate" id="classCode" [formControl]="classCode">
           <label for="classCode" class="">Class code</label>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" mdbBtn color="light" class="waves-light" aria-label="Close" (click)="joinModal.hide()" mdbWavesEffect>Cancel</button>
-        <button type="button" mdbBtn color="light" class="relative waves-light" mdbWavesEffect (click)="onJoin()">Join!</button>
+        <button type="button" color="light" class="waves-light" aria-label="Close" (click)="joinModal.hide()">Cancel</button>
+        <button type="button" color="light" class="relative waves-light" (click)="onJoin()">Join!</button>
       </div>
     </div>
   </div>
 </div>
 
-<div mdbModal #createModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div #createModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -62,25 +62,25 @@
       </div>
       <div class="modal-body">
         <div class="md-form">
-          <input type="text" class="form-control" id="className" mdbInput [formControl]="className">
+          <input type="text" class="form-control" id="className" [formControl]="className">
           <label for="className" class="">Class name (required)</label>
         </div>
         <div class="md-form">
-          <input type="text" class="form-control" id="section" mdbInput [formControl]="section">
+          <input type="text" class="form-control" id="section" [formControl]="section">
           <label for="section" class="">Section</label>
         </div>
         <div class="md-form">
-          <input type="text" class="form-control" id="subject" mdbInput [formControl]="subject">
+          <input type="text" class="form-control" id="subject" [formControl]="subject">
           <label for="subject" class="">Subject</label>
         </div>
         <div class="md-form">
-          <input type="text" class="form-control" id="room" mdbInput [formControl]="room">
+          <input type="text" class="form-control" id="room" [formControl]="room">
           <label for="room" class="">Room</label>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" mdbBtn color="light" class="waves-light" aria-label="Close" (click)="createModal.hide()" mdbWavesEffect>Cancel</button>
-        <button type="button" mdbBtn color="light" class="relative waves-light" mdbWavesEffect (click)="onCreate()">Create!</button>
+        <button type="button" color="light" class="waves-light" aria-label="Close" (click)="createModal.hide()">Cancel</button>
+        <button type="button" color="light" class="relative waves-light" (click)="onCreate()">Create!</button>
       </div>
     </div>
   </div>

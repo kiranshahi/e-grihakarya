@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace egrihakarya
 {
@@ -19,6 +20,9 @@ namespace egrihakarya
         }
         [AllowAnonymous]
         [HttpPost("authenticate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public IActionResult Authenticate([FromBody]Users userParam)
         {
             var user = _userService.Authenticate(userParam.Email, userParam.Password);
@@ -28,6 +32,8 @@ namespace egrihakarya
         }
         [AllowAnonymous]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Users>> Register(Users user)
         {
             _context.Users.Add(user);
@@ -43,6 +49,9 @@ namespace egrihakarya
             var users = _userService.GetAll();
             return Ok(users);
         }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -61,6 +70,10 @@ namespace egrihakarya
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> UpdateUser(int id, Users user)
         {
             if (id != user.Id)
@@ -85,6 +98,10 @@ namespace egrihakarya
             }
             return NoContent();
         }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Users>> DeleteUser(int id)
         {
             var userDetails = await _context.Users.FindAsync(id);

@@ -17,3 +17,6 @@ body {
 .cdk-overlay-container {
   z-index: 1060;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
